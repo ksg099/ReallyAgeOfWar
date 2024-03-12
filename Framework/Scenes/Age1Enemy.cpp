@@ -90,9 +90,13 @@ void Age1Enemy::OnDamage(int damage)
 
 void Age1Enemy::OnDie()
 {
-	if (!isAlive)
-		return;
-	isAlive = false;
-	SetActive(false);
-
+	//if (!isAlive)
+	//	return;
+	//isAlive = false;
+	//SetActive(false);
+	SceneGame* gameScene = dynamic_cast<SceneGame*>(SCENE_MGR.GetCurrentScene());
+	if (gameScene != nullptr)
+	{
+		gameScene->SetStatus(SceneGame::Status::GameWin);
+	}
 }

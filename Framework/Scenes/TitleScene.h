@@ -27,7 +27,7 @@ public:
 
 	void Init() override;
 	void Release() override;
-
+	void Reset();
 	void Enter() override;
 
 	void Update(float dt) override;

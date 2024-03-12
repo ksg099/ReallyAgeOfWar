@@ -71,12 +71,20 @@ void SceneGame::Init() //차이
 	pauseMsg->SetActive(false);
 	AddGo(pauseMsg, Ui);
 
-	exitMsg = new TextGo("exitMsg");
-	exitMsg->Set(fontResMgr.Get("fonts/LiberationSans.ttf"), "Exit Press Esc to Title", 60, sf::Color::White);
-	exitMsg->SetPosition({ 0.f, 0.f });
-	exitMsg->SetOrigin(Origins::MC);
-	exitMsg->SetActive(false);
-	AddGo(exitMsg, Ui);
+	loseMsg = new TextGo("exitMsg");
+	loseMsg->Set(fontResMgr.Get("fonts/LiberationSans.ttf"), "Exit Press Esc to Title", 60, sf::Color::White);
+	loseMsg->SetPosition({ 0.f, 0.f });
+	loseMsg->SetOrigin(Origins::MC);
+	loseMsg->SetActive(false);
+	AddGo(loseMsg, Ui);
+
+
+	winMsg = new TextGo("exitMsg");
+	winMsg->Set(fontResMgr.Get("fonts/LiberationSans.ttf"), "Exit Press Esc to Title", 60, sf::Color::White);
+	winMsg->SetPosition({ 0.f, 0.f });
+	winMsg->SetOrigin(Origins::MC);
+	winMsg->SetActive(false);
+	AddGo(winMsg, Ui);
 
 	Scene::Init();
 }
@@ -102,6 +110,16 @@ void SceneGame::Enter() //차이
 	worldView.setSize(viewSize);
 	worldView.setCenter(viewcenter);
 
+	pauseMsg->SetPosition({ viewcenter.x + 50.f, viewcenter.y + 270.f});
+	pauseMsg->SetOrigin(Origins::MC); // 메시지의 중앙이 화면 중앙에 오도록 설정
+
+	// Game Over 메시지 위치 설정
+	loseMsg->SetPosition({ viewcenter.x + 50.f, viewcenter.y + 270.f });
+	loseMsg->SetOrigin(Origins::MC); // 메시지의 중앙이 화면 중앙에 오도록 설정
+
+	// Win 메시지 위치 설정 (동일하게 적용)
+	winMsg->SetPosition({ viewcenter.x + 50.f, viewcenter.y + 270.f });
+	winMsg->SetOrigin(Origins::MC);
 
 	Scene::Enter();
 
@@ -124,9 +142,9 @@ void SceneGame::Exit()
 void SceneGame::Reset()
 {
 	pauseMsg->SetActive(false);
-	exitMsg->SetActive(false);
+	loseMsg->SetActive(false);
+	winMsg->SetActive(false);
 	age1Turrent1->SetActive(false);
-
 }
 
 void SceneGame::Update(float dt)
@@ -173,27 +191,32 @@ void SceneGame::Update(float dt)
 		{
 			pauseMsg->SetActive(false);
 			SetStatus(Status::Playing);
+			Reset();
 		}
 		break;
 
-		//case SceneGame::Status::NextWave:
-		//	player->SetPosition({ 0, 0 });
-		//	SetStatus(Status::Title);
-		//	hud->SetWave(++wave);
-		//	zspawners[0]->Spawn(5 * wave);
-		//	break;
-
 	case SceneGame::Status::GameOver:
-		exitMsg->SetActive(true);
+		loseMsg->SetActive(true);
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
-			sf::FloatRect exitMsgBounds = exitMsg->GetGlobalBounds();
+			sf::FloatRect exitMsgBounds = loseMsg->GetGlobalBounds();
 			if (exitMsgBounds.contains(uiMousePos))
 			{
 				SCENE_MGR.ChangeScene(SceneIds::Title);
+				Reset();
 			}
 		}
-
+	case SceneGame::Status::GameWin:
+		winMsg->SetActive(true);
+		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
+		{
+			sf::FloatRect exitMsgBounds = winMsg->GetGlobalBounds();
+			if (exitMsgBounds.contains(uiMousePos))
+			{
+				SCENE_MGR.ChangeScene(SceneIds::Title);
+				Reset();
+			}
+		}
 	}
 
 	//----------------------------------화면 밖으로 뷰가 나가지 않도록 하기----------------

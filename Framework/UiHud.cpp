@@ -111,20 +111,25 @@ void UiHud::Reset()
 	turretAdd->Reset();
 	turretSell->Reset();
 	upgrade->Reset();
+
+	sceneGame = dynamic_cast<SceneGame*>(SCENE_MGR.GetCurrentScene());
+
+	turretCancelBtn = dynamic_cast<SpriteGo*>(sceneGame->FindGo("turretCancelBtn"));
+
 }
 
 void UiHud::Update(float dt)
 {
 
 	//sf::Vector2f currMousePos = InputMgr::GetMousePos();
-	//sf::Vector2f UiMousePos = ScreenToUi((sf::Vector2i)currMousePos);
+	////sf::Vector2f UiMousePos = ScreenToUi((sf::Vector2i)currMousePos);
 
 	//if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 	//{
 
 	//	//유닛 버튼 클릭시
 	//	sf::FloatRect unitUiSelecttBounds = unitUiSelect->GetGlobalBounds();
-	//	if (unitUiSelecttBounds.contains(UiMousePos))
+	//	if (unitUiSelecttBounds.contains(currMousePos))
 	//	{
 	//		age1UiUnit1->SetActive(true);
 	//		age1UiUnit1->SetActive(true);
@@ -134,7 +139,7 @@ void UiHud::Update(float dt)
 
 	//	//터렛 버튼 클릭시
 	//	sf::FloatRect turretUiSelectBounds = turretUiSelect->GetGlobalBounds();
-	//	if (turretUiSelectBounds.contains(UiMousePos))
+	//	if (turretUiSelectBounds.contains(currMousePos))
 	//	{
 	//		age1UiTurret1->SetActive(true);
 	//		age1UiTurret2->SetActive(true);
@@ -144,17 +149,18 @@ void UiHud::Update(float dt)
 
 	//	//터렛 추가 받침대 버튼 클릭시
 	//	sf::FloatRect turretAddtBounds = turretAdd->GetGlobalBounds();
-	//	if (turretAddtBounds.contains(UiMousePos))
+	//	if (turretAddtBounds.contains(currMousePos))
 	//	{
-	//		turretCancelBtn->SetTexture("graphics/Age1Turret.png");
-	//		turretCancelBtn->SetOrigin(Origins::TR);
-	//		turretCancelBtn->SetPosition({ 500.f, -150.f });
+	//		turretAdd->SetTexture("graphics/Age1Turret.png");
+	//		turretAdd->SetOrigin(Origins::TR);
+	//		turretAdd->SetPosition({ 500.f, -150.f });
 	//	}
 
 	//	//터렛 되팔기 버튼 클릭시
 	//	sf::FloatRect turretSelltBounds = turretSell->GetGlobalBounds();
-	//	if (turretSelltBounds.contains(UiMousePos))
+	//	if (turretSelltBounds.contains(currMousePos))
 	//	{
+	//		turretCancelBtn = new SpriteGo("turretCancelBtn");
 	//		turretCancelBtn->SetTexture("graphics/select.png");
 	//		turretCancelBtn->SetOrigin(Origins::TR);
 	//		turretCancelBtn->SetPosition({ 500.f, -150.f });
@@ -164,7 +170,7 @@ void UiHud::Update(float dt)
 
 	//	//터렛 되팔기 내에 있는 cancel버튼 클릭시
 	//	sf::FloatRect turretCancelBtnBounds = turretCancelBtn->GetGlobalBounds();
-	//	if (turretCancelBtnBounds.contains(UiMousePos))
+	//	if (turretCancelBtnBounds.contains(currMousePos))
 	//	{
 	//		turretCancelBtn->SetActive(false);
 	//		unitUiSelect->SetActive(true);
@@ -176,7 +182,7 @@ void UiHud::Update(float dt)
 
 	//	//업그레이드 버튼 클릭시
 	//	sf::FloatRect upgradetBounds = upgrade->GetGlobalBounds();
-	//	if (upgradetBounds.contains(UiMousePos))
+	//	if (upgradetBounds.contains(currMousePos))
 	//	{
 	//		//업그레이드 함수 불러오기
 	//	}

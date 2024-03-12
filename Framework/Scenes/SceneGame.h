@@ -13,7 +13,6 @@ class EnemyBuilding;
 class Age1Enemy;
 class Turret;
 
-
 class SceneGame : public Scene
 {
 public:
@@ -23,13 +22,14 @@ public:
 		Playing,
 		NextWave,
 		GameOver,
+		GameWin,
 		Pause,
 	};
 
 protected:
 	Status currentStatus;
 	
-
+	SceneGame* sceneGame;
 	UiHud* hud;
 	PlayerBuilding* playerbuilding;
 	EnemyBuilding* enemybuilding;
@@ -42,9 +42,8 @@ protected:
 
 	//TextGo* pauseclose;
 	TextGo* pauseMsg;
-	TextGo* exitMsg;
-
-
+	TextGo* loseMsg;
+	TextGo* winMsg;
 	//sf::RectangleShape pauseshape;
 
 	bool ispause = false;

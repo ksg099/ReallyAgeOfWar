@@ -1,11 +1,14 @@
 #pragma once
+#include <fstream>
+#include <iostream>
 #include "GameObject.h"
 #include "SpriteGo.h"
 #include "TextGo.h"
 #include "SceneGame.h"
 
+
 class TextGo;
-class SpriteGo;
+class Scene;
 
 class UiHud : public SpriteGo
 {
@@ -14,14 +17,12 @@ protected:
 	std::string formatExp = "Exp : ";
 	std::string formatMoney = "Money : ";
 
-
+	SceneGame* sceneGame;
 
 	TextGo textExp;
 	TextGo textMoney;
 	TextGo* pauseMsg;
 	TextGo* exitMsg;
-
-	//TextGo* defaultMsg;
 
 	SpriteGo* unitUiSelect; //필살기랑 유닛 터렛 업그레이드 하는 ui부분
 	SpriteGo* turretUiSelect; //유닛 하는 ui부분

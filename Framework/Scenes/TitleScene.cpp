@@ -23,7 +23,7 @@ void TitleScene::Enter()
 	uiView.setCenter(centerPos);
 
 	FRAMEWORK.GetWindow().setView(uiView);
-
+	Reset();
 }
 void TitleScene::Init()
 {
@@ -83,6 +83,14 @@ void TitleScene::Init()
 void TitleScene::Release()
 {
 	Scene::Release();
+}
+
+void TitleScene::Reset()
+{
+	titlestart->SetActive(true);
+	titleoption->SetActive(true);
+	optionclose->SetActive(false);
+
 }
 
 
