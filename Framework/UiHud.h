@@ -38,6 +38,8 @@ protected:
 	SpriteGo* age1UiUnit2; //
 	SpriteGo* age1UiUnit3; //
 
+	SpriteGo* ultimate;
+
 	SpriteGo* turretCancelBtn; //
 	SpriteGo* backBtn; //
 

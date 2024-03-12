@@ -95,7 +95,10 @@ void UiHud::Init()
 	backBtn->SetOrigin(Origins::TR);
 	backBtn->SetPosition({ unitUiSelect->GetPosition().x + 200.f, unitUiSelect->GetPosition().y });
 
-	//upgrade.SetActive(false);
+	ultimate = new SpriteGo("ultimate");
+	ultimate->SetTexture("graphics/ultimate.png");
+	ultimate->SetOrigin(Origins::TR);
+	ultimate->SetPosition({ unitUiSelect->GetPosition().x + 200.f, unitUiSelect->GetPosition().y + 50.f});
 
 	//if (spawnMenu.GetActive())
 	//{
@@ -111,6 +114,7 @@ void UiHud::Reset()
 	turretAdd->Reset();
 	turretSell->Reset();
 	upgrade->Reset();
+	ultimate->Reset();
 
 	sceneGame = dynamic_cast<SceneGame*>(SCENE_MGR.GetCurrentScene());
 
@@ -239,7 +243,7 @@ void UiHud::Draw(sf::RenderWindow& window)
 	upgrade->Draw(window);
 	textExp.Draw(window);
 	textMoney.Draw(window);
-
+	ultimate->Draw(window);
 
 	if (pauseMsg->GetActive() || exitMsg->GetActive())
 	{

@@ -1,11 +1,13 @@
 #pragma once
 #include "SpriteGo.h"
+#include "SceneGame.h"
 class EnemyBuilding : public SpriteGo
 {
 protected:
 	sf::RectangleShape hpBar;
 	sf::Vector2f viewSize;
 
+	SceneGame* scenegame;
 
 	float maxHp = 100, f;
 	float hp = maxHp;
@@ -25,6 +27,6 @@ public:
 	void Draw(sf::RenderWindow& window) override;
 
 	void OnDamage(int damage);
-
+	void OnDie();
 	int GetHp() { return hp; }
 };

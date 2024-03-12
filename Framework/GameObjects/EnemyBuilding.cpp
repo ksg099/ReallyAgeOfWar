@@ -26,7 +26,7 @@ void EnemyBuilding::Reset()
 	SetOrigin(Origins::MC);
 	SetScale(sf::Vector2f(-1.f, 1.f));
 
-	hpBar.setPosition(GetPosition().x - 10.f, GetPosition().y - 300.f);
+	hpBar.setPosition(GetPosition().x - 5.f, GetPosition().y - 300.f);
 }
 
 void EnemyBuilding::Update(float dt)
@@ -41,6 +41,14 @@ void EnemyBuilding::Update(float dt)
 void EnemyBuilding::OnDamage(int damage)
 {
 
+}
+void EnemyBuilding::OnDie()
+{
+	SceneGame* gameScene = dynamic_cast<SceneGame*>(SCENE_MGR.GetCurrentScene());
+	if (gameScene != nullptr)
+	{
+		gameScene->SetStatus(SceneGame::Status::GameWin);
+	}
 }
 
 void EnemyBuilding::Draw(sf::RenderWindow& window)

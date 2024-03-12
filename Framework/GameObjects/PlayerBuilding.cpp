@@ -32,7 +32,7 @@ void PlayerBuilding::Reset()
 	SetPosition({ -730.f, 150.f });
 	SetOrigin(Origins::MC);
 
-	hpBar.setPosition(GetPosition().x - 10.f, GetPosition().y - 300.f);
+	hpBar.setPosition(GetPosition().x + 5.f, GetPosition().y - 300.f);
 }
 
 void PlayerBuilding::Update(float dt)
@@ -69,6 +69,7 @@ void PlayerBuilding::OnDefeat()
 	if (gameScene != nullptr)
 	{
 		gameScene->SetStatus(SceneGame::Status::GameOver);
+		Reset();
 	}
 
 }

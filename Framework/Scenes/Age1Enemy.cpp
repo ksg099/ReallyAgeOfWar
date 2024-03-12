@@ -42,6 +42,8 @@ void Age1Enemy::Update(float dt)
 {
 	SpriteGo::Update(dt);
 
+	enemyAttackTimer += dt;
+
 	if (!isAlive)
 		return;
 	direction = playerBuilding->GetPosition() - position;
@@ -53,10 +55,11 @@ void Age1Enemy::Update(float dt)
 
 	if (playerBuilding != nullptr && playerBuilding->GetActive())
 	{
-		if (GetGlobalBounds().intersects(playerBuilding->GetGlobalBounds()))
+		if (GetGlobalBounds().intersects(playerBuilding->GetGlobalBounds()) && enemyAttackTimer >= 1)
 		{
 			playerBuilding->OnDamage(enemyDamage);
-			enemyAttackTimer = 1.f;
+
+			enemyAttackTimer = 0.f;
 			//SetActive(false);
 			return;
 		}
@@ -90,13 +93,8 @@ void Age1Enemy::OnDamage(int damage)
 
 void Age1Enemy::OnDie()
 {
-	//if (!isAlive)
-	//	return;
-	//isAlive = false;
-	//SetActive(false);
-	SceneGame* gameScene = dynamic_cast<SceneGame*>(SCENE_MGR.GetCurrentScene());
-	if (gameScene != nullptr)
-	{
-		gameScene->SetStatus(SceneGame::Status::GameWin);
-	}
+	if (!isAlive)
+		return;
+	isAlive = false;
+	SetActive(false);
 }
