@@ -11,24 +11,34 @@ protected:
 	std::string formatExp = "Exp : ";
 	std::string formatMoney = "Money : ";
 
-	TextGo textExp;
-	TextGo textMoney;
-	TextGo defaultMsg;
 
-	SpriteGo unitUiSelect; //필살기랑 유닛 터렛 업그레이드 하는 ui부분
-	SpriteGo turretUiSelect; //유닛 하는 ui부분
-	SpriteGo turretAdd; //
-	SpriteGo turretSell; //
-	SpriteGo upgrade; //
 
-	SpriteGo age1UiUnit1; //
-	SpriteGo age1UiUnit2; //
-	SpriteGo age1UiUnit3; //
-	SpriteGo age1UiTurret1; //
-	SpriteGo age1UiTurret2; //
-	SpriteGo age1UiTurret3; //
-	SpriteGo turretCancelBtn; //
-	SpriteGo backBtn; //
+	TextGo* textExp;
+	TextGo* textMoney;
+	TextGo* defaultMsg;
+
+	SpriteGo* unitUiSelect; //필살기랑 유닛 터렛 업그레이드 하는 ui부분
+	SpriteGo* turretUiSelect; //유닛 하는 ui부분
+	SpriteGo* turretAdd; //
+	SpriteGo* turretSell; //
+	SpriteGo* upgrade; //
+
+	SpriteGo* age1UiTurret1; //
+	SpriteGo* age1UiTurret2; //
+	SpriteGo* age1UiTurre3; //
+
+	SpriteGo* age1UiUnit1; //
+	SpriteGo* age1UiUnit2; //
+	SpriteGo* age1UiUnit3; //
+
+	SpriteGo* age1UiUnit1; //
+	SpriteGo* age1UiUnit2; //
+	SpriteGo* age1UiUnit3; //
+	SpriteGo* age1UiTurret1; //
+	SpriteGo* age1UiTurret2; //
+	SpriteGo* age1UiTurret3; //
+	SpriteGo* turretCancelBtn; //
+	SpriteGo* backBtn; //
 
 	//SpriteGo* moneyExp; //현재 재화와 경험치를 보여주는 ui부분
 

@@ -25,7 +25,7 @@ void SceneGame::SetStatus(Status newStatus)
 		FRAMEWORK.SetTimeScale(0.f);
 		break;
 	case SceneGame::Status::Pause:
-		FRAMEWORK.SetTimeScale(0.f);
+		FRAMEWORK.SetTimeScale(1.f);
 		break;
 	}
 }
@@ -199,7 +199,7 @@ void SceneGame::Update(float dt)
 		// 일시정지 상태에서 'Space'를 누르면 게임 재개
 		if (InputMgr::GetKeyDown(sf::Keyboard::Space))
 		{
-			pauseMsg->SetActive(true);
+			pauseMsg->SetActive(false);
 			SetStatus(Status::Playing);
 		}
 		break;

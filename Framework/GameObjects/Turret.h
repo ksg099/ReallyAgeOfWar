@@ -2,6 +2,7 @@
 #include "SpriteGo.h"
 
 class SceneGame;
+class Age1Enemy;
 
 class Turret : public SpriteGo
 {
@@ -11,6 +12,7 @@ protected:
 	sf::Vector2f look = { 1.0f, 0.f };
 
 	SceneGame* sceneGame = nullptr;
+	Age1Enemy* age1enemy = nullptr;
 
 	float bulletSpeed = 1000.f;
 	float fireInterval = 0.5f;

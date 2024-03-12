@@ -2,6 +2,7 @@
 #include "SceneGame.h"
 #include "Bullet.h"
 #include "Turret.h"
+#include "Age1Enemy.h"
 
 Turret::Turret(const std::string& name) :SpriteGo(name)
 {
@@ -38,20 +39,21 @@ void Turret::Reset()
 void Turret::Update(float dt)
 {
 	SpriteGo::Update(dt);
+	sf::Vector2f enemyPosition = age1enemy->GetPosition();
 
-	//float distance = Utils::Distance(position, unitPosition);
+	float distance = Utils::Distance(position, enemyPosition);
 
-	//if (distance <= firingRange)
-	//{
-	//	look = unitPosition - position;
-	//	Utils::Normalize(look);
-	//	SetRotation(Utils::Angle(look));
-	//	isFiring = true;
-	//}
-	//else
-	//{
-	//	isFiring = false;
-	//}
+	if (distance <= firingRange)
+	{
+		look = enemyPosition - position;
+		Utils::Normalize(look);
+		SetRotation(Utils::Angle(look));
+		isFiring = true;
+	}
+	else
+	{
+		isFiring = false;
+	}
 
 	fireTimer += dt;
 	if (isFiring && fireTimer > fireInterval)
