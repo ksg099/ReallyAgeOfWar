@@ -26,19 +26,22 @@ void Turret::Release()
 
 }
 
-void Turret::Reset()
-{
-	SpriteGo::Reset();
-	sceneGame = dynamic_cast<SceneGame*>(SCENE_MGR.GetCurrentScene());
-	//SetPosition({ playerbuilding->GetPosition().x + 60.f, playerbuilding->GetPosition().y - 30.f });
-	SetPosition({ -730.f, 150.f });
-	SetOrigin(Origins::MC);
-
-	isFiring = false;
-	fireTimer = fireInterval;
-
-	targetEnemy = dynamic_cast<Age1Enemy*>(sceneGame->FindGo("age1Enemy"));
-}
+//void Turret::Reset()
+//{
+//	SpriteGo::Reset();
+//	std::cout << SCENE_MGR.GetCurrentScene() << std::endl;
+//	//ÇöÀç ¾ÀÀÌ Å¸ÀÌÆ²¾ÀÀÌ¶ó ¾ÈµÊ
+//	//sceneGame = dynamic_cast<SceneGame*>(SCENE_MGR.s());
+//	
+//	//SetPosition({ playerbuilding->GetPosition().x + 60.f, playerbuilding->GetPosition().y - 30.f });
+//	SetPosition({ -730.f, 150.f });
+//	SetOrigin(Origins::MC);
+//
+//	isFiring = false;
+//	fireTimer = fireInterval;
+//
+//	targetEnemy = dynamic_cast<Age1Enemy*>(sceneGame->FindGo("age1Enemy"));
+//}
 
 void Turret::Update(float dt)
 {

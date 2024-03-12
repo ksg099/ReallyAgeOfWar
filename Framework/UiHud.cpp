@@ -100,6 +100,10 @@ void UiHud::Init()
 	ultimate->SetOrigin(Origins::TR);
 	ultimate->SetPosition({ unitUiSelect->GetPosition().x + 200.f, unitUiSelect->GetPosition().y + 50.f});
 
+	turretCancelBtn = new SpriteGo("turretCancelBtn");
+	turretCancelBtn->SetTexture("graphics/select.png");
+	turretCancelBtn->SetOrigin(Origins::TR);
+	turretCancelBtn->SetPosition({ 500.f, -150.f });
 	//if (spawnMenu.GetActive())
 	//{
 	//	spawnUnit.SetActive(false);
@@ -118,91 +122,89 @@ void UiHud::Reset()
 
 	sceneGame = dynamic_cast<SceneGame*>(SCENE_MGR.GetCurrentScene());
 
-	turretCancelBtn = dynamic_cast<SpriteGo*>(sceneGame->FindGo("turretCancelBtn"));
+	//turretCancelBtn = dynamic_cast<SpriteGo*>(sceneGame->FindGo("turretCancelBtn"));
 
+	turretCancelBtn = dynamic_cast<SpriteGo*>(SCENE_MGR.GetCurrentScene()->FindGo("turretCancelBtn"));
 }
 
 void UiHud::Update(float dt)
 {
 
-	//sf::Vector2f currMousePos = InputMgr::GetMousePos();
-	////sf::Vector2f UiMousePos = ScreenToUi((sf::Vector2i)currMousePos);
+	sf::Vector2f currMousePos = InputMgr::GetMousePos();
+	//sf::Vector2f UiMousePos = ScreenToUi((sf::Vector2i)currMousePos);
 
-	//if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
-	//{
+	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
+	{
 
-	//	//유닛 버튼 클릭시
-	//	sf::FloatRect unitUiSelecttBounds = unitUiSelect->GetGlobalBounds();
-	//	if (unitUiSelecttBounds.contains(currMousePos))
-	//	{
-	//		age1UiUnit1->SetActive(true);
-	//		age1UiUnit1->SetActive(true);
-	//		age1UiUnit1->SetActive(true);
-	//		backBtn->SetActive(true);
-	//	}
+		//유닛 버튼 클릭시
+		sf::FloatRect unitUiSelecttBounds = unitUiSelect->GetGlobalBounds();
+		if (unitUiSelecttBounds.contains(currMousePos))
+		{
+			age1UiUnit1->SetActive(true);
+			age1UiUnit1->SetActive(true);
+			age1UiUnit1->SetActive(true);
+			backBtn->SetActive(true);
+		}
 
-	//	//터렛 버튼 클릭시
-	//	sf::FloatRect turretUiSelectBounds = turretUiSelect->GetGlobalBounds();
-	//	if (turretUiSelectBounds.contains(currMousePos))
-	//	{
-	//		age1UiTurret1->SetActive(true);
-	//		age1UiTurret2->SetActive(true);
-	//		age1UiTurret3->SetActive(true);
-	//		backBtn->SetActive(true);
-	//	}
+		//터렛 버튼 클릭시
+		sf::FloatRect turretUiSelectBounds = turretUiSelect->GetGlobalBounds();
+		if (turretUiSelectBounds.contains(currMousePos))
+		{
+			age1UiTurret1->SetActive(true);
+			age1UiTurret2->SetActive(true);
+			age1UiTurret3->SetActive(true);
+			backBtn->SetActive(true);
+		}
 
-	//	//터렛 추가 받침대 버튼 클릭시
-	//	sf::FloatRect turretAddtBounds = turretAdd->GetGlobalBounds();
-	//	if (turretAddtBounds.contains(currMousePos))
-	//	{
-	//		turretAdd->SetTexture("graphics/Age1Turret.png");
-	//		turretAdd->SetOrigin(Origins::TR);
-	//		turretAdd->SetPosition({ 500.f, -150.f });
-	//	}
+		//터렛 추가 받침대 버튼 클릭시
+		sf::FloatRect turretAddtBounds = turretAdd->GetGlobalBounds();
+		if (turretAddtBounds.contains(currMousePos))
+		{
+			turretAdd->SetTexture("graphics/Age1Turret.png");
+			turretAdd->SetOrigin(Origins::TR);
+			turretAdd->SetPosition({ 500.f, -150.f });
+		}
 
-	//	//터렛 되팔기 버튼 클릭시
-	//	sf::FloatRect turretSelltBounds = turretSell->GetGlobalBounds();
-	//	if (turretSelltBounds.contains(currMousePos))
-	//	{
-	//		turretCancelBtn = new SpriteGo("turretCancelBtn");
-	//		turretCancelBtn->SetTexture("graphics/select.png");
-	//		turretCancelBtn->SetOrigin(Origins::TR);
-	//		turretCancelBtn->SetPosition({ 500.f, -150.f });
-	//		//터렛을 클릭시 현재 돈 증가 및 해당 터렛 삭제 코드 추가
+		//터렛 되팔기 버튼 클릭시
+		sf::FloatRect turretSelltBounds = turretSell->GetGlobalBounds();
+		if (turretSelltBounds.contains(currMousePos))
+		{
 
-	//	}
+			//터렛을 클릭시 현재 돈 증가 및 해당 터렛 삭제 코드 추가
 
-	//	//터렛 되팔기 내에 있는 cancel버튼 클릭시
-	//	sf::FloatRect turretCancelBtnBounds = turretCancelBtn->GetGlobalBounds();
-	//	if (turretCancelBtnBounds.contains(currMousePos))
-	//	{
-	//		turretCancelBtn->SetActive(false);
-	//		unitUiSelect->SetActive(true);
-	//		turretUiSelect->SetActive(true);
-	//		turretAdd->SetActive(true);
-	//		turretSell->SetActive(true);
-	//		upgrade->SetActive(true);
-	//	}
+		}
 
-	//	//업그레이드 버튼 클릭시
-	//	sf::FloatRect upgradetBounds = upgrade->GetGlobalBounds();
-	//	if (upgradetBounds.contains(currMousePos))
-	//	{
-	//		//업그레이드 함수 불러오기
-	//	}
+		//터렛 되팔기 내에 있는 cancel버튼 클릭시
+		sf::FloatRect turretCancelBtnBounds = turretCancelBtn->GetGlobalBounds();
+		if (turretCancelBtnBounds.contains(currMousePos))
+		{
+			turretCancelBtn->SetActive(false);
+			unitUiSelect->SetActive(true);
+			turretUiSelect->SetActive(true);
+			turretAdd->SetActive(true);
+			turretSell->SetActive(true);
+			upgrade->SetActive(true);
+		}
 
-	//	//Ui내 닫기 버튼이 없다면
-	//	//if (!backBtn->GetActive())
-	//	//{
-	//	//	backBtn->SetActive(true);
-	//	//	unitUiSelect->SetActive(false);
-	//	//	turretUiSelect->SetActive(false);
-	//	//	turretAdd->SetActive(false);
-	//	//	turretSell->SetActive(false);
-	//	//	upgrade->SetActive(false);
-	//	//}
+		//업그레이드 버튼 클릭시
+		sf::FloatRect upgradetBounds = upgrade->GetGlobalBounds();
+		if (upgradetBounds.contains(currMousePos))
+		{
+			//업그레이드 함수 불러오기
+		}
 
-	//}
+		//Ui내 닫기 버튼이 없다면
+		//if (!backBtn->GetActive())
+		//{
+		//	backBtn->SetActive(true);
+		//	unitUiSelect->SetActive(false);
+		//	turretUiSelect->SetActive(false);
+		//	turretAdd->SetActive(false);
+		//	turretSell->SetActive(false);
+		//	upgrade->SetActive(false);
+		//}
+
+	}
 
 }
 

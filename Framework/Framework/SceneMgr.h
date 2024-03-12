@@ -27,7 +27,7 @@ public:
 
 	void ChangeScene(SceneIds id);
 
-	Scene* GetCurrentScene() { return scenes[(int)currentScene]; }
+	Scene* GetCurrentScene() { 	return scenes[(int)currentScene]; }
 
 	void Update(float dt);
 	void LateUpdate(float dt);

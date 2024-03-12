@@ -8,7 +8,7 @@
 
 
 class TextGo;
-class Scene;
+class SceneGame;
 
 class UiHud : public SpriteGo
 {

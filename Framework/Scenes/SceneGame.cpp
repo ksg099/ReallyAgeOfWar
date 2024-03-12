@@ -47,22 +47,28 @@ void SceneGame::Init() //차이
 	//플레이어 건물 출력
 	playerbuilding = new PlayerBuilding("playerbuilding");
 	AddGo(playerbuilding, World);
+	playerbuilding->Reset();
+
 
 	//게임 씬에서 적군 건물 출력
 	enemybuilding = new EnemyBuilding("enemybuilding");
 	AddGo(enemybuilding, World);
+	enemybuilding->Reset();
+
 
 	//터렛 출력
 	age1Turrent1 = new Turret("age1Turrent1");
 	AddGo(age1Turrent1, World);
+	age1Turrent1->Reset();
 
 	//적 유닛 출력
 	age1Enemy1 = new Age1Enemy("age1Enemy");
 	AddGo(age1Enemy1, World);
-
+	age1Enemy1->Reset();
 	//Ui
 	hud = new UiHud("Hud");
 	AddGo(hud, Ui);
+	hud->Reset();
 
 	pauseMsg = new TextGo("PAUSED");
 	pauseMsg->Set(fontResMgr.Get("fonts/LiberationSans.ttf"), "PAUSED Press space again to resume", 60, sf::Color::White);
@@ -70,6 +76,8 @@ void SceneGame::Init() //차이
 	pauseMsg->SetOrigin(Origins::MC);
 	pauseMsg->SetActive(false);
 	AddGo(pauseMsg, Ui);
+	pauseMsg->Reset();
+
 
 	loseMsg = new TextGo("exitMsg");
 	loseMsg->Set(fontResMgr.Get("fonts/LiberationSans.ttf"), "Exit Press Esc to Title", 60, sf::Color::White);
@@ -77,6 +85,7 @@ void SceneGame::Init() //차이
 	loseMsg->SetOrigin(Origins::MC);
 	loseMsg->SetActive(false);
 	AddGo(loseMsg, Ui);
+	loseMsg->Reset();
 
 
 	winMsg = new TextGo("exitMsg");
@@ -85,6 +94,7 @@ void SceneGame::Init() //차이
 	winMsg->SetOrigin(Origins::MC);
 	winMsg->SetActive(false);
 	AddGo(winMsg, Ui);
+	winMsg->Reset();
 
 	Scene::Init();
 }
@@ -139,13 +149,6 @@ void SceneGame::Exit()
 	FRAMEWORK.GetWindow().setMouseCursorVisible(true);
 }
 
-void SceneGame::Reset()
-{
-	pauseMsg->SetActive(false);
-	loseMsg->SetActive(false);
-	winMsg->SetActive(false);
-	age1Turrent1->SetActive(false);
-}
 
 void SceneGame::Update(float dt)
 {
@@ -191,7 +194,7 @@ void SceneGame::Update(float dt)
 		{
 			pauseMsg->SetActive(false);
 			SetStatus(Status::Playing);
-			Reset();
+			
 		}
 		break;
 
@@ -203,7 +206,7 @@ void SceneGame::Update(float dt)
 			if (exitMsgBounds.contains(uiMousePos))
 			{
 				SCENE_MGR.ChangeScene(SceneIds::Title);
-				Reset();
+		
 			}
 		}
 	case SceneGame::Status::GameWin:
@@ -214,7 +217,6 @@ void SceneGame::Update(float dt)
 			if (exitMsgBounds.contains(uiMousePos))
 			{
 				SCENE_MGR.ChangeScene(SceneIds::Title);
-				Reset();
 			}
 		}
 	}

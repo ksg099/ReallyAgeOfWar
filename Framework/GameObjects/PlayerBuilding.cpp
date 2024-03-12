@@ -68,8 +68,8 @@ void PlayerBuilding::OnDefeat()
 	SceneGame* gameScene = dynamic_cast<SceneGame*>(SCENE_MGR.GetCurrentScene());
 	if (gameScene != nullptr)
 	{
-		gameScene->SetStatus(SceneGame::Status::GameOver);
 		Reset();
+		gameScene->SetStatus(SceneGame::Status::GameOver);
 	}
 
 }

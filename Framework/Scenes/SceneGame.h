@@ -76,7 +76,7 @@ public:
 
 	void Enter() override;
 	void Exit() override;
-	void Reset();
+	
 
 	void Update(float dt) override;
 	void FixedUpdate(float dt) override;
