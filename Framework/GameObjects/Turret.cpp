@@ -37,13 +37,13 @@ void Turret::Reset()
 	isFiring = false;
 	fireTimer = fireInterval;
 
-	age1Enemy = dynamic_cast<Age1Enemy*>(sceneGame->FindGo("age1Enemy"));
+	targetEnemy = dynamic_cast<Age1Enemy*>(sceneGame->FindGo("age1Enemy"));
 }
 
 void Turret::Update(float dt)
 {
 	SpriteGo::Update(dt);
-	sf::Vector2f enemyPosition = age1Enemy->GetPosition();
+	sf::Vector2f enemyPosition = targetEnemy->GetPosition();
 
 	float distance = Utils::Distance(position, enemyPosition);
 
@@ -72,12 +72,18 @@ void Turret::Draw(sf::RenderWindow& window)
 	SpriteGo::Draw(window);
 }
 
+void Turret::OnDamage(int damage)
+{
+
+}
+
 void Turret::Fire()
 {
 	Bullet* bullet = new Bullet();
 	bullet->Init();
 	bullet->Reset();
 	bullet->SetPosition(position);
+	bullet->SetTargetEnemy(targetEnemy);
 	bullet->Fire(look, bulletSpeed, bulletDamage);
 	sceneGame->AddGo(bullet);
 

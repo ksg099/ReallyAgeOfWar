@@ -13,7 +13,7 @@ void PlayerBuilding::Init()
 	SpriteGo::Init();
 	textureId = "graphics/Age1.png";
 
-	hpBar.setSize(sf::Vector2f(30.f, 150.f));
+	hpBar.setSize(sf::Vector2f(30.f, hp));
 	hpBar.setFillColor(sf::Color::Red);
 
 	//sf::Font& font = RES_MGR_FONT.Get("fonts/zombiecontrol.ttf");
@@ -28,7 +28,7 @@ void PlayerBuilding::Reset()
 {
 
 	SetTexture(textureId);
-
+	hp = maxHp;
 	SetPosition({ -730.f, 150.f });
 	SetOrigin(Origins::MC);
 
@@ -37,54 +37,45 @@ void PlayerBuilding::Reset()
 
 void PlayerBuilding::Update(float dt)
 {
-	SpriteGo::Update(dt);
-	if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
-	{
-		this->OnDamage(damage);
-	}
+	//SpriteGo::Update(dt);
+	//if (InputMgr::GetKeyDown(sf::Keyboard::Enter))
+	//{
+	//	this->OnDamage(damage);
+	//}
 
-	
 }
 
 void PlayerBuilding::OnDamage(int damage)
 {
 	if (!isAlive)
 		return;
-
 	hp -= damage;
+	std::cout << hp << std::endl;
+	hpBar.setSize(sf::Vector2f(30.f, hp));
+
 	if (hp <= 0)
 	{
 		hp = 0;
-		//uiHud->Set(hp, maxHp);
+		hpBar.setSize(sf::Vector2f(30.f, hp));
 		OnDefeat();
+
 	}
-	//hpBar.setRotation(hpBar.setSize);
 
-
-	hpBar.setSize(sf::Vector2f(30.f, hp - damage));
-
-	//체력 - y, 더하기 로테이션
 }
 
 void PlayerBuilding::OnDefeat()
 {
-	//isAlive = false;
-	//isDefeated = true;
-	//defaultMsg = new TextGo("defaultMsg");
-	//defaultMsg->Set(RES_MGR_FONT.Get("fonts/LiberationSans.ttf"), "Lose", 100, sf::Color::White);
-	//defaultMsg->SetOrigin(Origins::MC);
-	//defaultMsg->SetPosition(viewSize);
-	//defaultMsg->SetActive(false);
-	//AddGo(defaultMsg);
+	SceneGame* gameScene = dynamic_cast<SceneGame*>(SCENE_MGR.GetCurrentScene());
+	if (gameScene != nullptr)
+	{
+		gameScene->SetStatus(SceneGame::Status::GameOver);
+	}
 
 }
+
 
 void PlayerBuilding::Draw(sf::RenderWindow& window)
 {
 	SpriteGo::Draw(window);
 	window.draw(hpBar);
-	//if (isDefeated)
-	//{
-	//	defaultMsg->Draw(window);
-	//}
 }

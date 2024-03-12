@@ -18,6 +18,9 @@ protected:
 
 	TextGo textExp;
 	TextGo textMoney;
+	TextGo* pauseMsg;
+	TextGo* exitMsg;
+
 	//TextGo* defaultMsg;
 
 	SpriteGo* unitUiSelect; //필살기랑 유닛 터렛 업그레이드 하는 ui부분

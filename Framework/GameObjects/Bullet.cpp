@@ -54,7 +54,6 @@ void Bullet::FixedUpdate(float dt)
 			{
 				sceneGame->RemoveGo(this);
 			}
-
 			targetEnemy->OnDamage(damage);
 
 			return;

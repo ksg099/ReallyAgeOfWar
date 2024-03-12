@@ -51,6 +51,17 @@ void Age1Enemy::Update(float dt)
 	sf::Vector2f pos = position + direction * enemySpeed * dt;
 	SetPosition(pos);
 
+	if (playerBuilding != nullptr && playerBuilding->GetActive())
+	{
+		if (GetGlobalBounds().intersects(playerBuilding->GetGlobalBounds()))
+		{
+			playerBuilding->OnDamage(enemyDamage);
+			enemyAttackTimer = 1.f;
+			//SetActive(false);
+			return;
+		}
+	}
+
 }
 
 void Age1Enemy::FixedUpdate(float dt)

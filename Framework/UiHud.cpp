@@ -19,6 +19,18 @@ void UiHud::Init()
 	textExp.SetPosition({ -250.f, -175.f });
 	textExp.SetOrigin(Origins::TL);
 	
+	pauseMsg = new TextGo("PAUSED");
+	pauseMsg->Set(font, "PAUSED Press space again to resume", 60, sf::Color::White);
+	pauseMsg->SetPosition({ 100.f, 0.f });
+	pauseMsg->SetOrigin(Origins::MC);
+	pauseMsg->SetActive(false);
+
+	exitMsg = new TextGo("exitMsg");
+	exitMsg->Set(font, "Exit Press Esc to Title", 60, sf::Color::White);
+	exitMsg->SetPosition({ 100.f, 0.f });
+	exitMsg->SetOrigin(Origins::MC);
+	exitMsg->SetActive(false);
+
 	unitUiSelect = new SpriteGo("unitUiSelect");
 	unitUiSelect->SetTexture("graphics/UnitUiSelect.png");
 	unitUiSelect->SetOrigin(Origins::TR);
@@ -82,7 +94,6 @@ void UiHud::Init()
 	backBtn->SetTexture("graphics/backBtn.png");
 	backBtn->SetOrigin(Origins::TR);
 	backBtn->SetPosition({ unitUiSelect->GetPosition().x + 200.f, unitUiSelect->GetPosition().y });
-
 
 	//upgrade.SetActive(false);
 
@@ -222,6 +233,13 @@ void UiHud::Draw(sf::RenderWindow& window)
 	upgrade->Draw(window);
 	textExp.Draw(window);
 	textMoney.Draw(window);
+
+
+	if (pauseMsg->GetActive() || exitMsg->GetActive())
+	{
+		pauseMsg->Draw(window);
+		exitMsg->Draw(window);
+	}
 
 	if (backBtn->GetActive())
 	{

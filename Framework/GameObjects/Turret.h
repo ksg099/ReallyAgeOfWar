@@ -12,7 +12,7 @@ protected:
 	sf::Vector2f look = { 1.0f, 0.f };
 
 	SceneGame* sceneGame;
-	Age1Enemy* age1Enemy;
+	Age1Enemy* targetEnemy;
 
 	float bulletSpeed = 1000.f;
 	float fireInterval = 0.5f;
@@ -33,7 +33,8 @@ public:
 	void Reset() override;
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& window) override;
-
+	void OnDamage(int damage);
+	void SetTargetEnemy(Age1Enemy* enemy) { targetEnemy = enemy; }
 	void Fire();
 };
 

@@ -23,7 +23,8 @@ void SceneGame::SetStatus(Status newStatus)
 		FRAMEWORK.SetTimeScale(0.f);
 		break;
 	case SceneGame::Status::Pause:
-		FRAMEWORK.SetTimeScale(1.f);
+		//멈춤스케일이 0이니까
+		FRAMEWORK.SetTimeScale(0.f);
 		break;
 	}
 }
@@ -56,8 +57,8 @@ void SceneGame::Init() //차이
 	AddGo(age1Turrent1, World);
 
 	//적 유닛 출력
-	age1Enemy = new Age1Enemy("age1Enemy");
-	AddGo(age1Enemy, World);
+	age1Enemy1 = new Age1Enemy("age1Enemy");
+	AddGo(age1Enemy1, World);
 
 	//Ui
 	hud = new UiHud("Hud");
@@ -108,7 +109,7 @@ void SceneGame::Enter() //차이
 	hud->SetMoney(175);
 	hud->SetExp(0);
 
-	//SetStatus(Status::Playing);
+	SetStatus(Status::Playing);
 	//머할지
 
 	//prevMousPos = InputMgr::GetMousePos();
@@ -138,39 +139,11 @@ void SceneGame::Update(float dt)
 
 	//마우스 위치 따라 뷰 이동 //
 	sf::Vector2f currMousePos = InputMgr::GetMousePos();
+	sf::Vector2f uiMousePos = ScreenToUi((sf::Vector2i)currMousePos);
 	sf::Vector2f worldMousePos = ScreenToWorld((sf::Vector2i)currMousePos);
 
 	age1Turrent1->SetPosition({ playerbuilding->GetPosition().x + 60.f, playerbuilding->GetPosition().y - 30.f });
 
-	//if (InputMgr::GetKeyDown(sf::Keyboard::Escape))
-	//{
-	//	ispause = !ispause; // 상태 토글
-	//}
-
-	//일시정지 할때 게임 진행 상황도 멈추게
-	//if (InputMgr::GetKeyDown(sf::Keyboard::Escape))
-	//{
-	//	ispause = true;
-
-	//	//pauseshape.setPosition({currentCenter.x + 100.f, currentCenter.y + 300.f});
-	//	//Utils::SetOrigin(pauseshape, Origins::MC);
-	//	//pauseshape.setSize({ 500.f, 300.f });
-	//	//pauseshape.setFillColor(sf::Color::Blue);
-	//	//Utils::SetOrigin(pauseshape, Origins::MC); //SetOrigin이 인자를 도형과 위치 2개 받아야함
-	//	//
-	//	////팝업창 닫기 버튼이 없다면
-	//	//if (!pauseclose->GetActive())
-	//	//{
-	//	//	pauseclose->SetActive(true);
-	//	//}
-
-	//	////게임 씬내에서 팝업창 닫기가 안됩니다.
-	//	//sf::FloatRect closeBounds = pauseclose->GetGlobalBounds();
-	//	//if (closeBounds.contains(worldMousePos) && ispause)
-	//	//{
-	//	//	pauseclose->SetActive(false);
-	//	//}
-	//}
 
 	switch (currentStatus)
 	{
@@ -209,11 +182,20 @@ void SceneGame::Update(float dt)
 		//	hud->SetWave(++wave);
 		//	zspawners[0]->Spawn(5 * wave);
 		//	break;
+
 	case SceneGame::Status::GameOver:
 		exitMsg->SetActive(true);
-		SCENE_MGR.ChangeScene(SceneIds::Title);
+		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
+		{
+			sf::FloatRect exitMsgBounds = exitMsg->GetGlobalBounds();
+			if (exitMsgBounds.contains(uiMousePos))
+			{
+				SCENE_MGR.ChangeScene(SceneIds::Title);
+			}
+		}
 
 	}
+
 	//----------------------------------화면 밖으로 뷰가 나가지 않도록 하기----------------
 
 //뷰좌표기준으로 한다.

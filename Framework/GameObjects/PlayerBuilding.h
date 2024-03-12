@@ -12,9 +12,10 @@ protected:
 	sf::Vector2f viewSize;
 
 
-	float maxHp = 100,f;
+
+	float maxHp = 200.f;
 	float hp = maxHp;
-	float damage = 10.f;
+	//float damage = 10.f;
 
 	bool isAlive = true;
 	bool isDefeated = false;

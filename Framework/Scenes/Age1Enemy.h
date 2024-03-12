@@ -4,7 +4,6 @@
 
 class UiHud;
 
-
 class Age1Enemy : public SpriteGo
 {
 public:
@@ -24,14 +23,17 @@ protected:
 	SceneGame* sceneGame;
 	PlayerBuilding* playerBuilding;
 	UiHud* uiHud;
-	
+	SpriteGo* age1Eenemy1;
+	SpriteGo* age1Eenemy2;
+
+
 	sf::Vector2f direction;
 
-	int enemyMaxHp = 100.f;
+	int enemyMaxHp = 1000.f;
 	int enemyHp = enemyMaxHp;
 	int enemyDamage = 50.f;
 
-	float enemySpeed = 50.f;
+	float enemySpeed = 100.f;
 	float enemyAttackTimer = 0.f;
 
 	bool isAlive = true;

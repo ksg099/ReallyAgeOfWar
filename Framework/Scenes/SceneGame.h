@@ -33,7 +33,8 @@ protected:
 	UiHud* hud;
 	PlayerBuilding* playerbuilding;
 	EnemyBuilding* enemybuilding;
-	Age1Enemy* age1Enemy;
+	Age1Enemy* age1Enemy1;
+	Age1Enemy* age1Enemy2;
 
 	Turret* age1Turrent1;
 
