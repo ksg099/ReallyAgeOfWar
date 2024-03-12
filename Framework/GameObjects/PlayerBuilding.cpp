@@ -26,6 +26,7 @@ void PlayerBuilding::Release()
 
 void PlayerBuilding::Reset()
 {
+
 	SetTexture(textureId);
 
 	SetPosition({ -730.f, 150.f });

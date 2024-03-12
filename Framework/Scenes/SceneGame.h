@@ -10,6 +10,7 @@ class SpriteGo;
 class UiHud;
 class PlayerBuilding;
 class EnemyBuilding;
+class Age1Enemy;
 class Turret;
 
 
@@ -32,6 +33,7 @@ protected:
 	UiHud* hud;
 	PlayerBuilding* playerbuilding;
 	EnemyBuilding* enemybuilding;
+	Age1Enemy* age1Enemy;
 
 	Turret* age1Turrent1;
 

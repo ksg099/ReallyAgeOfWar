@@ -5,6 +5,7 @@
 #include "EnemyBuilding.h"
 #include "Turret.h"
 #include "UiHud.h"
+#include "Age1Enemy.h"
 
 SceneGame::SceneGame(SceneIds id) : Scene(id)
 {
@@ -18,9 +19,6 @@ void SceneGame::SetStatus(Status newStatus)
 	case SceneGame::Status::Playing:
 		FRAMEWORK.SetTimeScale(1.f);
 		break;
-	//case SceneGame::Status::NextWave:
-	//	FRAMEWORK.SetTimeScale(0.f);
-	//	break;
 	case SceneGame::Status::GameOver:
 		FRAMEWORK.SetTimeScale(0.f);
 		break;
@@ -32,6 +30,7 @@ void SceneGame::SetStatus(Status newStatus)
 
 void SceneGame::Init() //차이
 {
+	
 
 	//게임 씬에서 배경 출력
 	background = new SpriteGo("BackGround");
@@ -53,12 +52,12 @@ void SceneGame::Init() //차이
 	AddGo(enemybuilding, World);
 
 	//터렛 출력
-	age1Turrent1 = new Turret("enemybuilding");
+	age1Turrent1 = new Turret("age1Turrent1");
 	AddGo(age1Turrent1, World);
 
 	//적 유닛 출력
-	age1Turrent1 = new Turret("enemybuilding");
-	AddGo(age1Turrent1, World);
+	age1Enemy = new Age1Enemy("age1Enemy");
+	AddGo(age1Enemy, World);
 
 	//Ui
 	hud = new UiHud("Hud");
@@ -265,25 +264,5 @@ void SceneGame::Draw(sf::RenderWindow& window)
 {
 	Scene::Draw(window);
 
-	//if (hud != nullptr)
-	//{
-	//	hud->Draw(window);
-	//}
-
-	////팝업창 그리기
-	//if (ispause )
-	//{
-	//	window.draw(pauseshape);
-	//	if (pauseclose->GetActive())
-	//	{
-	//		pauseclose->Draw(window);
-	//	}
-	//}
-
-	//if (!pauseclose->GetActive())
-	//{
-	//	window.draw(pauseshape);
-	//	pauseclose->Draw(window);
-	//}
 }
 

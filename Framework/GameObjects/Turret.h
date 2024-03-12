@@ -11,15 +11,15 @@ protected:
 	sf::Vector2f direction = { 0.f, 0.f };
 	sf::Vector2f look = { 1.0f, 0.f };
 
-	SceneGame* sceneGame = nullptr;
-	Age1Enemy* age1enemy = nullptr;
+	SceneGame* sceneGame;
+	Age1Enemy* age1Enemy;
 
 	float bulletSpeed = 1000.f;
 	float fireInterval = 0.5f;
-	float firingRange = 200.f;
+	float firingRange = 400.f;
 
-	int damage = 10;
-	int bulletDamage = 10;
+	int damage = 50;
+	int bulletDamage = 50;
 
 	bool isFiring = false;
 	float fireTimer = 0.f;

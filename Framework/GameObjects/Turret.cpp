@@ -16,6 +16,8 @@ void Turret::Init()
 
 	isFiring = false;
 	fireTimer = fireInterval;
+
+
 }
 
 void Turret::Release()
@@ -27,19 +29,21 @@ void Turret::Release()
 void Turret::Reset()
 {
 	SpriteGo::Reset();
-	//sceneGame = dynamic_cast<SceneGame*>(SCENE_MGR.GetCurrentScene());
+	sceneGame = dynamic_cast<SceneGame*>(SCENE_MGR.GetCurrentScene());
 	//SetPosition({ playerbuilding->GetPosition().x + 60.f, playerbuilding->GetPosition().y - 30.f });
 	SetPosition({ -730.f, 150.f });
 	SetOrigin(Origins::MC);
 
 	isFiring = false;
 	fireTimer = fireInterval;
+
+	age1Enemy = dynamic_cast<Age1Enemy*>(sceneGame->FindGo("age1Enemy"));
 }
 
 void Turret::Update(float dt)
 {
 	SpriteGo::Update(dt);
-	sf::Vector2f enemyPosition = age1enemy->GetPosition();
+	sf::Vector2f enemyPosition = age1Enemy->GetPosition();
 
 	float distance = Utils::Distance(position, enemyPosition);
 

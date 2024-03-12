@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Bullet.h"
 #include "SceneGame.h"
+#include "Age1Enemy.h"
 
 Bullet::Bullet(const std::string& name) : SpriteGo(name)
 {
@@ -27,6 +28,8 @@ void Bullet::Reset()
 {
 	SpriteGo::Reset();
 	sceneGame = dynamic_cast<SceneGame*>(SCENE_MGR.GetCurrentScene());
+
+
 }
 
 void Bullet::Update(float dt)
@@ -35,7 +38,27 @@ void Bullet::Update(float dt)
 
 }
 
+void Bullet::SetTargetEnemy(Age1Enemy* enemy)
+{
+	targetEnemy = enemy;
+}
+
 void Bullet::FixedUpdate(float dt)
 {
+	if (targetEnemy != nullptr && targetEnemy->GetActive())
+	{
+		if (GetGlobalBounds().intersects(targetEnemy->GetGlobalBounds()))
+		{
+			SetActive(false);
+			if (sceneGame != nullptr)
+			{
+				sceneGame->RemoveGo(this);
+			}
 
+			targetEnemy->OnDamage(damage);
+
+			return;
+		}
+	}
 }
+

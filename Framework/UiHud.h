@@ -4,6 +4,9 @@
 #include "TextGo.h"
 #include "SceneGame.h"
 
+class TextGo;
+class SpriteGo;
+
 class UiHud : public SpriteGo
 {
 protected:
@@ -13,9 +16,9 @@ protected:
 
 
 
-	TextGo* textExp;
-	TextGo* textMoney;
-	TextGo* defaultMsg;
+	TextGo textExp;
+	TextGo textMoney;
+	//TextGo* defaultMsg;
 
 	SpriteGo* unitUiSelect; //필살기랑 유닛 터렛 업그레이드 하는 ui부분
 	SpriteGo* turretUiSelect; //유닛 하는 ui부분
@@ -25,18 +28,12 @@ protected:
 
 	SpriteGo* age1UiTurret1; //
 	SpriteGo* age1UiTurret2; //
-	SpriteGo* age1UiTurre3; //
-
-	SpriteGo* age1UiUnit1; //
-	SpriteGo* age1UiUnit2; //
-	SpriteGo* age1UiUnit3; //
-
-	SpriteGo* age1UiUnit1; //
-	SpriteGo* age1UiUnit2; //
-	SpriteGo* age1UiUnit3; //
-	SpriteGo* age1UiTurret1; //
-	SpriteGo* age1UiTurret2; //
 	SpriteGo* age1UiTurret3; //
+
+	SpriteGo* age1UiUnit1; //
+	SpriteGo* age1UiUnit2; //
+	SpriteGo* age1UiUnit3; //
+
 	SpriteGo* turretCancelBtn; //
 	SpriteGo* backBtn; //
 
