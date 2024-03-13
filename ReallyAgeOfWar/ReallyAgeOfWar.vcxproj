@@ -165,7 +165,6 @@
     <ClCompile Include="GameObjects\TextGo.cpp" />
     <ClCompile Include="Scenes\TitleScene.cpp" />
     <ClCompile Include="GameObjects\Turret.cpp" />
-    <ClCompile Include="GameObjects\Spawner.cpp" />
     <ClCompile Include="UiHud.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -191,7 +190,6 @@
     <ClInclude Include="GameObjects\TextGo.h" />
     <ClInclude Include="Scenes\TitleScene.h" />
     <ClInclude Include="GameObjects\Turret.h" />
-    <ClInclude Include="GameObjects\Spawner.h" />
     <ClInclude Include="UiHud.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

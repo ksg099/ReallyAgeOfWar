@@ -91,6 +91,10 @@ public:
 
 	void AllMsgDelete();
 
+	void UnitMsgDelete();
+	void TurretMsgDelete();
+
+
 	void Ui1unitClick();
 	void Ui1turretClick();
 
