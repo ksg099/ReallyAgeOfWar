@@ -75,7 +75,7 @@
     <ClCompile Include="Scenes\Age1Enemy.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerUnit.cpp">
+    <ClCompile Include="GameObjects\PlayerUnit.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -146,7 +146,7 @@
     <ClInclude Include="Scenes\Age1Enemy.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerUnit.h">
+    <ClInclude Include="GameObjects\PlayerUnit.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

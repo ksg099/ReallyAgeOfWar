@@ -29,10 +29,10 @@ void PlayerBuilding::Reset()
 
 	SetTexture(textureId);
 	hp = maxHp;
-	SetPosition({ -730.f, 150.f });
-	SetOrigin(Origins::MC);
+	SetPosition({ -820.f, 225.f });
+	SetOrigin(Origins::BL);
 
-	hpBar.setPosition(GetPosition().x + 5.f, GetPosition().y - 300.f);
+	hpBar.setPosition(GetPosition().x + 100.f, GetPosition().y - 375.f);
 }
 
 void PlayerBuilding::Update(float dt)

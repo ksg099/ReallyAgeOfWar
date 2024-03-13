@@ -11,12 +11,7 @@ Age1Enemy::Age1Enemy(const std::string& name) : SpriteGo(name)
 void Age1Enemy::Init()
 {
 	SpriteGo::Init();
-	textureId = "graphics/attack.png";
-	//SetTexture("graphics/age1UiUnit2.png");
-	SetPosition({ 730.f, 150.f });
-	SetScale({ -1.f, 1.f });
-	SetOrigin(Origins::MC);
-
+	textureId = "graphics/Unit1.png";
 }
 
 void Age1Enemy::Release()
@@ -28,8 +23,9 @@ void Age1Enemy::Release()
 void Age1Enemy::Reset()
 {
 	SetTexture(textureId);
-	SetPosition({ 730.f, 200.f });
-	SetOrigin(Origins::MC);
+	SetPosition({ 600.f, 200.f });
+	SetScale({ -1.f, 1.f });
+	SetOrigin(Origins::BR);
 
 	//scene 찾기
 	sceneGame = dynamic_cast<SceneGame*>(SCENE_MGR.GetCurrentScene());
@@ -42,29 +38,31 @@ void Age1Enemy::Update(float dt)
 {
 	SpriteGo::Update(dt);
 
+	if (!isAlive || playerBuilding == nullptr || !playerBuilding->GetActive())
+		return;
+
 	enemyAttackTimer += dt;
 
-	if (!isAlive)
-		return;
-	direction = playerBuilding->GetPosition() - position;
-	Utils::Normalize(direction);
-
-	SetRotation(Utils::Angle(direction));
-	sf::Vector2f pos = position + direction * enemySpeed * dt;
-	SetPosition(pos);
-
-	if (playerBuilding != nullptr && playerBuilding->GetActive())
+	//충돌 검사
+	bool isColliding = GetGlobalBounds().intersects(playerBuilding->GetGlobalBounds());
+	if (isColliding)
 	{
-		if (GetGlobalBounds().intersects(playerBuilding->GetGlobalBounds()) && enemyAttackTimer >= 1)
+		if (enemyAttackTimer >= 1) // 공격 간격이 1보다 작을때
 		{
 			playerBuilding->OnDamage(enemyDamage);
 
-			enemyAttackTimer = 0.f;
-			//SetActive(false);
-			return;
+			enemyAttackTimer = 0.f; //공격 타이머 리셋
 		}
 	}
-
+	
+	else //충돌하지 않을때만 움직이게 변경
+	{
+		direction = playerBuilding->GetPosition() - position;
+		direction.y = 0.f;
+		Utils::Normalize(direction);
+		sf::Vector2f pos = position + direction * enemySpeed * dt;
+		SetPosition(pos);
+	}
 }
 
 void Age1Enemy::FixedUpdate(float dt)
@@ -97,4 +95,10 @@ void Age1Enemy::OnDie()
 		return;
 	isAlive = false;
 	SetActive(false);
+
+	if (sceneGame != nullptr)
+	{
+		sceneGame->AddExp(100);
+		sceneGame->AddMoney(50);
+	}
 }

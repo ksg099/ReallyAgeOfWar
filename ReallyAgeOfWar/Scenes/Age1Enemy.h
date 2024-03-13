@@ -23,13 +23,10 @@ protected:
 	SceneGame* sceneGame;
 	PlayerBuilding* playerBuilding;
 	UiHud* uiHud;
-	SpriteGo* age1Eenemy1;
-	SpriteGo* age1Eenemy2;
-
 
 	sf::Vector2f direction;
 
-	int enemyMaxHp = 1000.f;
+	int enemyMaxHp = 100.f;
 	int enemyHp = enemyMaxHp;
 	int enemyDamage = 50.f;
 

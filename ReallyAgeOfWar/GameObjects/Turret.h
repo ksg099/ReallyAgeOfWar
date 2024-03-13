@@ -30,7 +30,7 @@ public:
 
 	void Init() override;
 	void Release() override;
-	//void Reset() override;
+	void Reset() override;
 	void Update(float dt) override;
 	void Draw(sf::RenderWindow& window) override;
 	void OnDamage(int damage);

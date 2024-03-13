@@ -47,28 +47,24 @@ void SceneGame::Init() //차이
 	//플레이어 건물 출력
 	playerbuilding = new PlayerBuilding("playerbuilding");
 	AddGo(playerbuilding, World);
-	playerbuilding->Reset();
 
 
 	//게임 씬에서 적군 건물 출력
 	enemybuilding = new EnemyBuilding("enemybuilding");
 	AddGo(enemybuilding, World);
-	enemybuilding->Reset();
 
 
 	//터렛 출력
 	age1Turrent1 = new Turret("age1Turrent1");
 	AddGo(age1Turrent1, World);
-	age1Turrent1->Reset();
 
 	//적 유닛 출력
 	age1Enemy1 = new Age1Enemy("age1Enemy");
 	AddGo(age1Enemy1, World);
-	age1Enemy1->Reset();
+
 	//Ui
 	hud = new UiHud("Hud");
 	AddGo(hud, Ui);
-	hud->Reset();
 
 	pauseMsg = new TextGo("PAUSED");
 	pauseMsg->Set(fontResMgr.Get("fonts/LiberationSans.ttf"), "PAUSED Press space again to resume", 60, sf::Color::White);
@@ -76,7 +72,6 @@ void SceneGame::Init() //차이
 	pauseMsg->SetOrigin(Origins::MC);
 	pauseMsg->SetActive(false);
 	AddGo(pauseMsg, Ui);
-	pauseMsg->Reset();
 
 
 	loseMsg = new TextGo("exitMsg");
@@ -85,7 +80,6 @@ void SceneGame::Init() //차이
 	loseMsg->SetOrigin(Origins::MC);
 	loseMsg->SetActive(false);
 	AddGo(loseMsg, Ui);
-	loseMsg->Reset();
 
 
 	winMsg = new TextGo("exitMsg");
@@ -94,7 +88,6 @@ void SceneGame::Init() //차이
 	winMsg->SetOrigin(Origins::MC);
 	winMsg->SetActive(false);
 	AddGo(winMsg, Ui);
-	winMsg->Reset();
 
 	Scene::Init();
 }
@@ -163,7 +156,7 @@ void SceneGame::Update(float dt)
 	sf::Vector2f uiMousePos = ScreenToUi((sf::Vector2i)currMousePos);
 	sf::Vector2f worldMousePos = ScreenToWorld((sf::Vector2i)currMousePos);
 
-	age1Turrent1->SetPosition({ playerbuilding->GetPosition().x + 60.f, playerbuilding->GetPosition().y - 30.f });
+	age1Turrent1->SetPosition({ playerbuilding->GetPosition().x + 180.f, playerbuilding->GetPosition().y - 125.f });
 
 
 	switch (currentStatus)

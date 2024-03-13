@@ -63,8 +63,6 @@ public:
 	void Init() override;
 	void Reset() override;
 	void Draw(sf::RenderWindow& window) override;
-
-	void SetHp(int hp, int max);
 	
 	void SetExp(int s);
 	void AddExp(int e);
@@ -72,17 +70,3 @@ public:
 	void SetMoney(int s);
 	void AddMoney(int m);
 };
-
-//씬게임에서 일시정지가 안됨
-//
-//uihud에서
-//sf::Vector2f currMousePos = InputMgr::GetMousePos();
-//sf::Vector2f UiMousePos = ScreenToUi((sf::Vector2i)currMousePos);
-//ScreenToUi안됨
-//
-//uihud에서 ui버튼 클릭시 setactive하는 부분이 너무 많은데 이게 맞나
-//draw할때도 너무 많아지는거 같다
-//현재 유닛 위치를 일단 잡아두고 터렛과 유닛의 거리를 비교해서 사거리에 들어오면 불릿 발사하게
-//
-//터렛과 터렛 추가 받침대를 미리 생성해두고 activefalse해둔후 ui내에서 해당 터렛을 클릭시 그 위치에 해당 터렛이
-//activetrue 되도록
