@@ -62,19 +62,19 @@ void UiHud::Init()
 	age1UiTurret1 = new SpriteGo("unitUiSelect");
 	age1UiTurret1->SetTexture("graphics/age1UiUnit1.png");
 	age1UiTurret1->SetOrigin(Origins::TR);
-	age1UiTurret1->SetPosition({ 500.f, -150.f });
+	age1UiTurret1->SetPosition({ 650.f, -150.f });
 	age1UiTurret1->SetActive(false);
 
 	age1UiTurret2 = new SpriteGo("unitUiSelect");
 	age1UiTurret2->SetTexture("graphics/age1UiUnit2.png");
 	age1UiTurret2->SetOrigin(Origins::TR);
-	age1UiTurret2->SetPosition({ 550.f, -150.f });
+	age1UiTurret2->SetPosition({ 700.f, -150.f });
 	age1UiTurret2->SetActive(false);
 
 	age1UiTurret3 = new SpriteGo("unitUiSelect");
 	age1UiTurret3->SetTexture("graphics/age1UiUnit3.png");
 	age1UiTurret3->SetOrigin(Origins::TR);
-	age1UiTurret3->SetPosition({ 600.f, -150.f });
+	age1UiTurret3->SetPosition({ 750.f, -150.f });
 	age1UiTurret3->SetActive(false);
 
 	turretAdd = new SpriteGo("unitUiSelect");

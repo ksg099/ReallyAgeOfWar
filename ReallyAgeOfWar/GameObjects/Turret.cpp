@@ -49,7 +49,7 @@ void Turret::Update(float dt)
 
 	fireTimer += dt;
 
-	if (targetEnemy != nullptr && targetEnemy->isAlive()) //타겟이 살아 있을때, nullptr이 아닐때
+	if (targetEnemy != nullptr && targetEnemy->isAlive) //타겟이 살아 있을때, nullptr이 아닐때
 	{
 		sf::Vector2f enemyPosition = targetEnemy->GetPosition();
 		float distance = Utils::Distance(position, enemyPosition);

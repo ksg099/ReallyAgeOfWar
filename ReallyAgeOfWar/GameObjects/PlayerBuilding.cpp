@@ -50,7 +50,7 @@ void PlayerBuilding::OnDamage(int damage)
 	if (!isAlive)
 		return;
 	hp -= damage;
-	std::cout << hp << std::endl;
+	//std::cout << hp << std::endl;
 	hpBar.setSize(sf::Vector2f(30.f, hp));
 
 	if (hp <= 0)

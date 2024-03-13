@@ -33,13 +33,13 @@ protected:
 	float enemySpeed = 100.f;
 	float enemyAttackTimer = 0.f;
 
-	bool isAlive = true;
 
 
 public:
 
 	Age1Enemy(const std::string& name = "");
 	
+	bool isAlive = true;
 	void Init() override;
 	void Release() override;
 	void Reset() override;
