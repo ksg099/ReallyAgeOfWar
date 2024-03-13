@@ -15,7 +15,7 @@ class UiHud : public SpriteGo
 protected:
 
 	std::string formatExp = "Exp : ";
-	std::string formatMoney = "Money : ";
+	std::string formatMoney = "$ : ";
 
 	SceneGame* sceneGame;
 
@@ -23,6 +23,22 @@ protected:
 	TextGo textMoney;
 	TextGo* pauseMsg;
 	TextGo* exitMsg;
+
+	TextGo* age1UiUnit1Msg;
+	TextGo* age1UiUnit2Msg;
+	TextGo* age1UiUnit3Msg;
+
+	TextGo* age1UiTurret1Msg;
+	TextGo* age1UiTurret2Msg;
+	TextGo* age1UiTurret3Msg;
+
+	TextGo* unitUiSelectMsg;
+	TextGo* turretUiSelectMsg;
+	TextGo* turretSellMsg;
+	TextGo* turretAddMsg;
+	TextGo* upgradeMsg;
+	TextGo* backBtnMsg;
+
 
 	SpriteGo* unitUiSelect; //필살기랑 유닛 터렛 업그레이드 하는 ui부분
 	SpriteGo* turretUiSelect; //유닛 하는 ui부분
