@@ -209,7 +209,7 @@ void UiHud::Update(float dt)
 	sf::FloatRect unitUiSelectBounds = unitUiSelect->GetGlobalBounds();
 	if (unitUiSelectBounds.contains(UiMousePos))
 	{
-		//AllMsgDelete();
+		AllMsgDelete();
 		unitUiSelectMsg->SetActive(true);
 
 		//유닛 버튼을 클릭했을 경우
@@ -230,7 +230,7 @@ void UiHud::Update(float dt)
 	sf::FloatRect age1UiUnit1Bounds = age1UiUnit1->GetGlobalBounds();
 	if (age1UiUnit1Bounds.contains(UiMousePos))
 	{
-		UnitMsgDelete();
+		AllMsgDelete();
 		age1UiUnit1Msg->SetActive(true);
 
 		//유닛1 버튼을 클릭했을 경우
@@ -244,7 +244,7 @@ void UiHud::Update(float dt)
 	sf::FloatRect age1UiUnit2Bounds = age1UiUnit2->GetGlobalBounds();
 	if (age1UiUnit2Bounds.contains(UiMousePos))
 	{
-		UnitMsgDelete();
+		AllMsgDelete();
 		age1UiUnit2Msg->SetActive(true);
 	
 		//유닛2 버튼을 클릭했을 경우
@@ -258,8 +258,8 @@ void UiHud::Update(float dt)
 	sf::FloatRect age1UiUnit3Bounds = age1UiUnit3->GetGlobalBounds();
 	if (age1UiUnit3Bounds.contains(UiMousePos))
 	{
+		AllMsgDelete();
 		age1UiUnit3Msg->SetActive(true);
-		UnitMsgDelete();
 		//유닛3 버튼을 클릭했을 경우
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
@@ -294,7 +294,7 @@ void UiHud::Update(float dt)
 	sf::FloatRect age1UiTurret1Bounds = age1UiTurret1->GetGlobalBounds();
 	if (age1UiTurret1Bounds.contains(UiMousePos))
 	{
-		TurretMsgDelete();
+		AllMsgDelete();
 		age1UiTurret1Msg->SetActive(true);
 		
 		//터렛1 버튼을 클릭했을 경우
@@ -310,7 +310,7 @@ void UiHud::Update(float dt)
 	sf::FloatRect age1UiTurret2Bounds = age1UiTurret2->GetGlobalBounds();
 	if (age1UiTurret2Bounds.contains(UiMousePos))
 	{
-		TurretMsgDelete();
+		AllMsgDelete();
 		age1UiTurret2Msg->SetActive(true);
 		
 		//터렛2 버튼을 클릭했을 경우
@@ -325,7 +325,7 @@ void UiHud::Update(float dt)
 	sf::FloatRect age1UiTurret3Bounds = age1UiTurret3->GetGlobalBounds();
 	if (age1UiTurret3Bounds.contains(UiMousePos))
 	{
-		TurretMsgDelete();
+		AllMsgDelete();
 		age1UiTurret3Msg->SetActive(true);
 	
 		//터렛3 버튼을 클릭했을 경우
@@ -339,6 +339,7 @@ void UiHud::Update(float dt)
 	sf::FloatRect turretAddtBounds = turretAdd->GetGlobalBounds();
 	if (turretAddtBounds.contains(UiMousePos))
 	{
+		AllMsgDelete();
 		turretAddMsg->SetActive(true);
 
 		//터렛 추가 위치 버튼을 클릭했을 경우
@@ -365,6 +366,7 @@ void UiHud::Update(float dt)
 	sf::FloatRect turretSelltBounds = turretSell->GetGlobalBounds();
 	if (turretSelltBounds.contains(UiMousePos))
 	{
+		AllMsgDelete();
 		turretSellMsg->SetActive(true);
 
 		//터렛 되팔기 버튼을 클릭했을 경우
@@ -400,6 +402,7 @@ void UiHud::Update(float dt)
 	sf::FloatRect upgradeBounds = upgrade->GetGlobalBounds();
 	if (upgradeBounds.contains(UiMousePos))
 	{
+		AllMsgDelete();
 		upgradeMsg->SetActive(true);
 
 		//업그레이드 버튼을 클릭했을 경우
@@ -413,6 +416,7 @@ void UiHud::Update(float dt)
 	sf::FloatRect backBtnBounds = backBtn->GetGlobalBounds();
 	if (backBtnBounds.contains(UiMousePos))
 	{
+		AllMsgDelete();
 		backBtnMsg->SetActive(true);
 
 		//뒤로가기 버튼을 클릭했을 경우
