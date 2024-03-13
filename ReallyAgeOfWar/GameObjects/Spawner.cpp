@@ -40,7 +40,16 @@ void Spawner::Update(float dt)
 
 		for (int i = 0; i < spawnCount; i++)
 		{
-			sf::Vector2f pos = position + ;
+			if (sceneGame != nullptr) //현재 씬이 유효한지 검사
+			{
+				sf::Vector2f pos = playerBuilding->GetPosition();
+			}
+			//GameObject* newGo = Create();
+			//newGo->Init();
+			//newGo->Reset();
+			//newGo->SetPosition(pos);
+
+			//SCENE_MGR.GetCurrentScene()->AddGo(newGo);
 		}
 	}
 }
