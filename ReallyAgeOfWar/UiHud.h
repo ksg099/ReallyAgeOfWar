@@ -85,4 +85,14 @@ public:
 
 	void SetMoney(int s);
 	void AddMoney(int m);
+
+	void Ui1unitMsg();
+	void Ui1turretMsg();
+
+	void AllMsgDelete();
+
+	void Ui1unitClick();
+	void Ui1turretClick();
+
+	void UiBack();
 };

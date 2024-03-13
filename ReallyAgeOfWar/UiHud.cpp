@@ -252,6 +252,7 @@ void UiHud::Update(float dt)
 			age1UiUnit3->SetActive(false);
 			turretAdd->SetActive(false);
 			turretSell->SetActive(false);
+			AllMsgDelete();
 
 			age1UiTurret1->SetActive(true);
 			sf::FloatRect age1UiTurret1Bounds = age1UiTurret1->GetGlobalBounds();
@@ -286,6 +287,7 @@ void UiHud::Update(float dt)
 			turretAdd->SetActive(false);
 			turretSell->SetActive(false);
 			turretCancelBtn->SetActive(false);
+			AllMsgDelete();
 
 		}
 
@@ -308,6 +310,7 @@ void UiHud::Update(float dt)
 
 			//터렛을 클릭시 현재 돈 증가 및 해당 터렛 삭제 코드 추가
 			//Remove();
+			AllMsgDelete();
 			sceneGame->AddMoney(100);
 		}
 
@@ -316,7 +319,8 @@ void UiHud::Update(float dt)
 		if (turretCancelBtnBounds.contains(UiMousePos))
 		{
 			//터렛 되팔기 기능 수행할 코드 추가
-		
+			AllMsgDelete();
+
 		}
 
 		//업그레이드 버튼 클릭시
@@ -324,6 +328,8 @@ void UiHud::Update(float dt)
 		if (upgradetBounds.contains(UiMousePos))
 		{
 			//업그레이드 함수 불러오기 일정 경험치가 도달할 경우에만 업그레이드 가능
+			AllMsgDelete();
+
 		}
 
 		//뒤로가기 버튼 클릭시
@@ -344,6 +350,7 @@ void UiHud::Update(float dt)
 			age1UiTurret2->SetActive(false);
 			age1UiTurret3->SetActive(false);
 			backBtn->SetActive(false);
+			AllMsgDelete();
 			return;
 		}
 	}
@@ -369,6 +376,42 @@ void UiHud::AddExp(int e)
 void UiHud::AddMoney(int m)
 {
 	MoneyCount += m;
+}
+
+void UiHud::Ui1unitMsg()
+{
+}
+
+void UiHud::Ui1turretMsg()
+{
+}
+
+void UiHud::AllMsgDelete()
+{
+	unitUiSelectMsg->SetActive(false);
+	age1UiUnit1Msg->SetActive(false);
+	age1UiUnit2Msg->SetActive(false);
+	age1UiUnit3Msg->SetActive(false);
+	turretUiSelectMsg->SetActive(false);
+	age1UiTurret1Msg->SetActive(false);
+	age1UiTurret2Msg->SetActive(false);
+	age1UiTurret3Msg->SetActive(false);
+	turretSellMsg->SetActive(false);
+	turretAddMsg->SetActive(false);
+	upgradeMsg->SetActive(false);
+	backBtnMsg->SetActive(false);
+}
+
+void UiHud::Ui1unitClick()
+{
+}
+
+void UiHud::Ui1turretClick()
+{
+}
+
+void UiHud::UiBack()
+{
 }
 
 void UiHud::Draw(sf::RenderWindow& window)
