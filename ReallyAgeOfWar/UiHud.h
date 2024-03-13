@@ -56,7 +56,7 @@ protected:
 
 	SpriteGo* ultimate;
 
-	SpriteGo* turretCancelBtn; //
+	//SpriteGo* turretCancelBtn; //
 	SpriteGo* backBtn; //
 
 	//SpriteGo* moneyExp; //현재 재화와 경험치를 보여주는 ui부분

@@ -177,11 +177,11 @@ void UiHud::Init()
 	ultimate->SetOrigin(Origins::TR);
 	ultimate->SetPosition({ unitUiSelect->GetPosition().x + 200.f, unitUiSelect->GetPosition().y + 50.f});
 
-	turretCancelBtn = new SpriteGo("turretCancelBtn");
-	turretCancelBtn->SetTexture("graphics/cancelBtn.png");
-	turretCancelBtn->SetOrigin(Origins::TR);
-	turretCancelBtn->SetPosition({ turretSell->GetPosition().x + 0.f, turretSell->GetPosition().y - 65.f});
-	turretCancelBtn->SetActive(false);
+	//turretCancelBtn = new SpriteGo("turretCancelBtn");
+	//turretCancelBtn->SetTexture("graphics/cancelBtn.png");
+	//turretCancelBtn->SetOrigin(Origins::TR);
+	//turretCancelBtn->SetPosition({ turretSell->GetPosition().x + 0.f, turretSell->GetPosition().y - 65.f});
+	//turretCancelBtn->SetActive(false);
 
 
 }
@@ -204,98 +204,166 @@ void UiHud::Update(float dt)
 	sf::Vector2f currMousePos = InputMgr::GetMousePos();
 	sf::Vector2f UiMousePos = sceneGame->ScreenToUi((sf::Vector2i)currMousePos);
 
-	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
-	{
+	AllMsgDelete();
 
-		//유닛 버튼 클릭시
-		sf::FloatRect unitUiSelectBounds = unitUiSelect->GetGlobalBounds();
-		if (unitUiSelectBounds.contains(UiMousePos))
+	// 유닛 버튼에 커서가 위치할 경우
+	sf::FloatRect unitUiSelectBounds = unitUiSelect->GetGlobalBounds();
+	if (unitUiSelectBounds.contains(UiMousePos))
+	{
+		unitUiSelectMsg->SetActive(true);
+
+		//유닛 버튼을 클릭했을 경우
+		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
 			age1UiTurret1->SetActive(false);
 			age1UiTurret2->SetActive(false);
 			age1UiTurret3->SetActive(false);
-			turretCancelBtn->SetActive(false);
-			unitUiSelectMsg->SetActive(true);
-			backBtn->SetActive(true);
 
 			age1UiUnit1->SetActive(true);
-			sf::FloatRect age1UiUnit1Bounds = age1UiUnit1->GetGlobalBounds();
-			if (age1UiUnit1Bounds.contains(UiMousePos))
-			{
-				age1UiUnit1Msg->SetActive(true);
-				//유닛1을 플레이어 빌딩위치에서 생성
-			}
-
 			age1UiUnit2->SetActive(true);
-			sf::FloatRect age1UiUnit2Bounds = age1UiUnit2->GetGlobalBounds();
-			if (age1UiUnit2Bounds.contains(UiMousePos))
-			{
-				//유닛2을 플레이어 빌딩위치에서 생성
-			}
-
 			age1UiUnit3->SetActive(true);
-			sf::FloatRect age1UiUnit3Bounds = age1UiUnit3->GetGlobalBounds();
-			if (age1UiUnit3Bounds.contains(UiMousePos))
-			{
-				//유닛3을 플레이어 빌딩위치에서 생성
-			}
-		}
-
-		//터렛 버튼 클릭시
-		sf::FloatRect turretUiSelectBounds = turretUiSelect->GetGlobalBounds();
-		if (turretUiSelectBounds.contains(UiMousePos))
-		{
-			turretCancelBtn->SetActive(false);
-			turretUiSelect->SetActive(false);
-			age1UiUnit1->SetActive(false);
-			age1UiUnit2->SetActive(false);
-			age1UiUnit3->SetActive(false);
-			turretAdd->SetActive(false);
-			turretSell->SetActive(false);
-			AllMsgDelete();
-
-			age1UiTurret1->SetActive(true);
-			sf::FloatRect age1UiTurret1Bounds = age1UiTurret1->GetGlobalBounds();
-			if (age1UiTurret1Bounds.contains(UiMousePos))
-			{
-				//터렛1을 플레이어 빌딩위치에서 생성
-			}
-			age1UiTurret2->SetActive(true);
-			sf::FloatRect age1UiTurret2Bounds = age1UiTurret2->GetGlobalBounds();
-			if (age1UiTurret2Bounds.contains(UiMousePos))
-			{
-				//터렛2을 플레이어 빌딩위치에서 생성
-			}
-			age1UiTurret3->SetActive(true);
-			sf::FloatRect age1UiTurret3Bounds = age1UiTurret3->GetGlobalBounds();
-			if (age1UiTurret3Bounds.contains(UiMousePos))
-			{
-				//터렛3을 플레이어 빌딩위치에서 생성
-			}
 			backBtn->SetActive(true);
 		}
+	}
 
-		//터렛 추가 받침대 버튼 클릭시
-		sf::FloatRect turretAddtBounds = turretAdd->GetGlobalBounds();
-		if (turretAddtBounds.contains(UiMousePos))
+	// 유닛1 버튼에 커서가 위치할 경우
+	sf::FloatRect age1UiUnit1Bounds = age1UiUnit1->GetGlobalBounds();
+	if (age1UiUnit1Bounds.contains(UiMousePos))
+	{
+		age1UiUnit1Msg->SetActive(true);
+
+		//유닛1 버튼을 클릭했을 경우
+		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
+			//유닛1 플레이어 위치에 소환
+		}
+	}
 
+	// 유닛2 버튼에 커서가 위치할 경우
+	sf::FloatRect age1UiUnit2Bounds = age1UiUnit2->GetGlobalBounds();
+	if (age1UiUnit2Bounds.contains(UiMousePos))
+	{
+		age1UiUnit2Msg->SetActive(true);
+	
+		//유닛2 버튼을 클릭했을 경우
+		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
+		{
+			//유닛2 플레이어 위치에 소환
+		}
+	}
+
+	// 유닛3 버튼에 커서가 위치할 경우
+	sf::FloatRect age1UiUnit3Bounds = age1UiUnit3->GetGlobalBounds();
+	if (age1UiUnit3Bounds.contains(UiMousePos))
+	{
+		age1UiUnit3Msg->SetActive(true);
+	
+		//유닛3 버튼을 클릭했을 경우
+		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
+		{
+			//유닛3 플레이어 위치에 소환
+		}
+	}
+
+	//터렛 버튼에 마우스 커서가 위치 할 경우
+	sf::FloatRect turretUiSelectBounds = turretUiSelect->GetGlobalBounds();
+	if (turretUiSelectBounds.contains(UiMousePos))
+	{
+		turretUiSelectMsg->SetActive(true);
+	
+		//터렛 버튼을 클릭했을 경우
+		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
+		{
+			age1UiUnit1->SetActive(false);
+			age1UiUnit2->SetActive(false);
+			age1UiUnit3->SetActive(false);
+
+			age1UiTurret1->SetActive(true);
+			age1UiTurret2->SetActive(true);
+			age1UiTurret3->SetActive(true);
+
+			backBtn->SetActive(true);
+		}
+	}
+
+	//터렛1 버튼에 커서가 위치할 경우
+	sf::FloatRect age1UiTurret1Bounds = age1UiTurret1->GetGlobalBounds();
+	if (age1UiTurret1Bounds.contains(UiMousePos))
+	{
+		age1UiTurret1Msg->SetActive(true);
+		
+		//터렛1 버튼을 클릭했을 경우
+		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
+		{
+			//터렛1 플레이어 빌딩 위치에 소환
+		}
+	}
+
+
+
+	// 터렛2 버튼에 커서가 위치할 경우
+	sf::FloatRect age1UiTurret2Bounds = age1UiTurret2->GetGlobalBounds();
+	if (age1UiTurret2Bounds.contains(UiMousePos))
+	{
+		age1UiTurret2Msg->SetActive(true);
+		
+		//터렛2 버튼을 클릭했을 경우
+		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
+		{
+			//터렛2 플레이어 빌딩 위치에 소환
+		}
+	}
+
+
+	// 터렛3 버튼에 커서가 위치할 경우
+	sf::FloatRect age1UiTurret3Bounds = age1UiTurret3->GetGlobalBounds();
+	if (age1UiTurret3Bounds.contains(UiMousePos))
+	{
+		age1UiTurret3Msg->SetActive(true);
+	
+		//터렛3 버튼을 클릭했을 경우
+		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
+		{
+			//터렛3 플레이어 빌딩 위치에 소환
+		}
+	}
+
+	//터렛 추가 위치 버튼에 마우스 커서가 위치 할 경우
+	sf::FloatRect turretAddtBounds = turretAdd->GetGlobalBounds();
+	if (turretAddtBounds.contains(UiMousePos))
+	{
+		turretAddMsg->SetActive(true);
+
+		//터렛 추가 위치 버튼을 클릭했을 경우
+		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
+		{
 			turretUiSelect->SetActive(false);
 			age1UiUnit1->SetActive(false);
 			age1UiUnit2->SetActive(false);
 			age1UiUnit3->SetActive(false);
+			
+			age1UiTurret1->SetActive(false);
+			age1UiTurret2->SetActive(false);
+			age1UiTurret3->SetActive(false);
+
 			turretAdd->SetActive(false);
 			turretSell->SetActive(false);
-			turretCancelBtn->SetActive(false);
-			AllMsgDelete();
+			//turretCancelBtn->SetActive(false);
 
+			backBtn->SetActive(true);
 		}
+	}
 
-		//터렛 되팔기 버튼 클릭시
-		sf::FloatRect turretSelltBounds = turretSell->GetGlobalBounds();
-		if (turretSelltBounds.contains(UiMousePos))
+	// 터렛 되팔기 버튼에 커서가 위치할 경우
+	sf::FloatRect turretSelltBounds = turretSell->GetGlobalBounds();
+	if (turretSelltBounds.contains(UiMousePos))
+	{
+		turretSellMsg->SetActive(true);
+
+		//터렛 되팔기 버튼을 클릭했을 경우
+		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
-			turretCancelBtn->SetActive(true);
+			//turretCancelBtn->SetActive(true);
 			backBtn->SetActive(true);
 
 			turretUiSelect->SetActive(false);
@@ -307,38 +375,43 @@ void UiHud::Update(float dt)
 			age1UiTurret1->SetActive(false);
 			age1UiTurret2->SetActive(false);
 			age1UiTurret3->SetActive(false);
-
-			//터렛을 클릭시 현재 돈 증가 및 해당 터렛 삭제 코드 추가
-			//Remove();
-			AllMsgDelete();
+			//터렛3을 제거 후 그만큼 돈 증가
 			sceneGame->AddMoney(100);
 		}
 
 		//터렛 되팔기 내에 있는 cancel버튼 클릭시
-		sf::FloatRect turretCancelBtnBounds = turretCancelBtn->GetGlobalBounds();
-		if (turretCancelBtnBounds.contains(UiMousePos))
-		{
-			//터렛 되팔기 기능 수행할 코드 추가
-			AllMsgDelete();
+		//sf::FloatRect turretCancelBtnBounds = turretCancelBtn->GetGlobalBounds();
+		//if (turretCancelBtnBounds.contains(UiMousePos))
+		//{
+		//	//터렛 되팔기 기능 수행할 코드 추가
+		//	AllMsgDelete();
 
-		}
+		//}
+	}
 
-		//업그레이드 버튼 클릭시
-		sf::FloatRect upgradetBounds = upgrade->GetGlobalBounds();
-		if (upgradetBounds.contains(UiMousePos))
+	//업그레이드 버튼에 마우스 커서가 위치 할 경우
+	sf::FloatRect upgradeBounds = upgrade->GetGlobalBounds();
+	if (upgradeBounds.contains(UiMousePos))
+	{
+		upgradeMsg->SetActive(true);
+
+		//업그레이드 버튼을 클릭했을 경우
+		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
 			//업그레이드 함수 불러오기 일정 경험치가 도달할 경우에만 업그레이드 가능
-			AllMsgDelete();
-
 		}
+	}
 
-		//뒤로가기 버튼 클릭시
-		sf::FloatRect backBtnBounds = backBtn->GetGlobalBounds();
-		if (backBtnBounds.contains(UiMousePos))
+	//뒤로가기 버튼에 마우스 커서가 위치 할 경우
+	sf::FloatRect backBtnBounds = backBtn->GetGlobalBounds();
+	if (backBtnBounds.contains(UiMousePos))
+	{
+		backBtnMsg->SetActive(true);
+
+		//뒤로가기 버튼을 클릭했을 경우
+		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
-			backBtnMsg->SetActive(true);
-
-			turretCancelBtn->SetActive(false);
+			//turretCancelBtn->SetActive(false);
 			turretUiSelect->SetActive(false);
 			age1UiUnit1->SetActive(false);
 			age1UiUnit2->SetActive(false);
@@ -350,11 +423,8 @@ void UiHud::Update(float dt)
 			age1UiTurret2->SetActive(false);
 			age1UiTurret3->SetActive(false);
 			backBtn->SetActive(false);
-			AllMsgDelete();
-			return;
 		}
 	}
-
 }
 
 void UiHud::SetExp(int s)
@@ -447,10 +517,10 @@ void UiHud::Draw(sf::RenderWindow& window)
 		age1UiTurret3->Draw(window);
 	}
 
-	if (turretCancelBtn->GetActive())
-	{
-		turretCancelBtn->Draw(window);
-	}
+	//if (turretCancelBtn->GetActive())
+	//{
+	//	turretCancelBtn->Draw(window);
+	//}
 
 	if (backBtn->GetActive())
 	{
