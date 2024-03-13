@@ -9,16 +9,18 @@ class Age1Enemy : public SpriteGo
 public:
 	enum class Age1Types
 	{
-		Human,
-		thrower,
+		man,
+		slingShot,
 		Rider,
 	};
 
 	static const int Age1TotalTypes = 3;
-	static Age1Enemy* Create(Age1Types age1Types);
+	static Age1Enemy* Create(Age1Types age1EnemyTypes);
 
 protected:
-	Age1Types Age1Types;
+	Age1Types type;
+
+	Age1Types age1Types;
 
 	SceneGame* sceneGame;
 	PlayerBuilding* playerBuilding;
@@ -26,14 +28,13 @@ protected:
 
 	sf::Vector2f direction;
 
-	int enemyMaxHp = 100.f;
-	int enemyHp = enemyMaxHp;
-	int enemyDamage = 50.f;
+	int maxHp = 100.f;
+	int hp = maxHp;
+	int damage = 50.f;
 
-	float enemySpeed = 100.f;
-	float enemyAttackTimer = 0.f;
-
-
+	float speed = 100.f;
+	float attackTimer = 0.f;
+	float attackInterval = 1.f;
 
 public:
 

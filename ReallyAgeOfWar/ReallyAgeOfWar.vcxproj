@@ -138,7 +138,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameObjects\PlayerUnit.cpp" />
-    <ClCompile Include="Scenes\Age1Enemy.cpp" />
+    <ClCompile Include="GameObjects\Age1Enemy.cpp" />
     <ClCompile Include="GameObjects\Bullet.cpp" />
     <ClCompile Include="GameObjects\EnemyBuilding.cpp" />
     <ClCompile Include="Framework\Framework.cpp" />
@@ -165,11 +165,12 @@
     <ClCompile Include="GameObjects\TextGo.cpp" />
     <ClCompile Include="Scenes\TitleScene.cpp" />
     <ClCompile Include="GameObjects\Turret.cpp" />
+    <ClCompile Include="GameObjects\Spawner.cpp" />
     <ClCompile Include="UiHud.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObjects\PlayerUnit.h" />
-    <ClInclude Include="Scenes\Age1Enemy.h" />
+    <ClInclude Include="GameObjects\Age1Enemy.h" />
     <ClInclude Include="GameObjects\Bullet.h" />
     <ClInclude Include="GameObjects\EnemyBuilding.h" />
     <ClInclude Include="Framework\Framework.h" />
@@ -190,6 +191,7 @@
     <ClInclude Include="GameObjects\TextGo.h" />
     <ClInclude Include="Scenes\TitleScene.h" />
     <ClInclude Include="GameObjects\Turret.h" />
+    <ClInclude Include="GameObjects\Spawner.h" />
     <ClInclude Include="UiHud.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
