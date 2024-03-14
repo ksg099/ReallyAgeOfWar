@@ -9,6 +9,7 @@
 
 class TextGo;
 class SceneGame;
+class PlayerUnit;
 
 class UiHud : public SpriteGo
 {
@@ -18,6 +19,7 @@ protected:
 	std::string formatMoney = "$ : ";
 
 	SceneGame* sceneGame;
+	PlayerUnit* playerUnit;
 
 	TextGo textExp;
 	TextGo textMoney;

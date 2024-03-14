@@ -1,8 +1,9 @@
 #include "pch.h"
 #include "Spawner.h"
-#include "SceneGame.h"
+#include "PlayerBuilding.h"
+#include "EnemyBuilding.h"
 
-Spawner::Spawner(const std::string& name) :GameObject(name)
+Spawner::Spawner(const std::string& name) : GameObject(name)
 {
 }
 
@@ -21,35 +22,41 @@ void Spawner::Reset()
 {
 	GameObject::Reset();
 
-	interval = 3.f;
-	spawnCount = 1;
-
 	timer = 0.f;
-
 	sceneGame = dynamic_cast<SceneGame*>(SCENE_MGR.GetCurrentScene());
 }
 
 void Spawner::Update(float dt)
 {
-	GameObject::Update(dt);
+	if (currentWave == nullptr)
+		return;
 
 	timer += dt;
-	if (timer > interval) //시간을 쟀을때 지정 설정 시간 간격이 지나면
+	if (timer > currentWave->timeVec[index])
 	{
-		timer = 0.f;
+		Age1Enemy* newEnemy = Age1Enemy::Create(currentWave->typeVec[index]);
+		newEnemy->Init();
+		newEnemy->Reset();
+		sceneGame->AddGo(newEnemy);;
 
-		for (int i = 0; i < spawnCount; i++)
+		++index;
+		if (currentWave->timeVec.size() == index)
 		{
-			if (sceneGame != nullptr) //현재 씬이 유효한지 검사
-			{
-				sf::Vector2f pos = playerBuilding->GetPosition();
-			}
-			//GameObject* newGo = Create();
-			//newGo->Init();
-			//newGo->Reset();
-			//newGo->SetPosition(pos);
-
-			//SCENE_MGR.GetCurrentScene()->AddGo(newGo);
+			WaveEnd();
 		}
 	}
+
+}
+
+void Spawner::WaveStart(Wave* wave)
+{
+	currentWave = wave;
+	timer = 0.f;
+	index = 0;
+}
+
+void Spawner::WaveEnd()
+{
+	currentWave = nullptr;
+	sceneGame->OnWaveEnd();
 }

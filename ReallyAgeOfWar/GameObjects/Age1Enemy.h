@@ -1,8 +1,9 @@
 #pragma once
 #include "SpriteGo.h"
-#include "UiHud.h"
 
+class PlayerBuilding;
 class UiHud;
+class SceneGame;
 
 class Age1Enemy : public SpriteGo
 {
@@ -30,7 +31,7 @@ protected:
 
 	int maxHp = 100.f;
 	int hp = maxHp;
-	int damage = 50.f;
+	int damage = 5.f;
 
 	float speed = 100.f;
 	float attackTimer = 0.f;

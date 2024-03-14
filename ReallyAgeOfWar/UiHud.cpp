@@ -233,6 +233,7 @@ void UiHud::Update(float dt)
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
 			//유닛1 플레이어 위치에 소환
+			PlayerUnit->Create();
 		}
 	}
 

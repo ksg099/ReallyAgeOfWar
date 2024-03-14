@@ -2,16 +2,23 @@
 #include "Scene.h"
 #include <fstream>
 #include <iostream>
-#include "pch.h"
-#include "TextGo.h"
-
+#include "Age1Enemy.h"
 
 class SpriteGo;
+class TextGo;
 class UiHud;
 class PlayerBuilding;
 class EnemyBuilding;
-class Age1Enemy;
+//class Age1Enemy;
 class Turret;
+class Spawner;
+
+struct Wave
+{
+	std::vector<float> timeVec;
+	std::vector<Age1Enemy::Age1Types> typeVec;
+};
+
 
 class SceneGame : public Scene
 {
@@ -33,8 +40,6 @@ protected:
 	UiHud* hud;
 	PlayerBuilding* playerbuilding;
 	EnemyBuilding* enemybuilding;
-	Age1Enemy* age1Enemy1;
-	Age1Enemy* age1Enemy2;
 
 	Turret* age1Turrent1;
 
@@ -58,6 +63,11 @@ protected:
 
 	//sf::Vector2f prevMousPos;
 
+	// wave
+	int totalWave = 6;
+	int currentWave = 0;
+	std::vector<Wave> waves;
+	Spawner* enemySpawner;
 
 public:
 	SceneGame(SceneIds id);
@@ -86,6 +96,8 @@ public:
 	void AddMoney(int s);
 
 	void EnemyClear();
+
+	void OnWaveEnd();
 
 };
 

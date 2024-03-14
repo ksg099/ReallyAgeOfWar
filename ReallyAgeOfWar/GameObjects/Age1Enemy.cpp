@@ -6,7 +6,7 @@
 
 Age1Enemy* Age1Enemy::Create(Age1Types age1EnemyTypes)
 {
-	Age1Enemy* age1Enemy = new Age1Enemy("Zombie");
+	Age1Enemy* age1Enemy = new Age1Enemy("age1Enemy");
 	age1Enemy->type = age1EnemyTypes;
 
 	switch (age1EnemyTypes)
@@ -15,7 +15,7 @@ Age1Enemy* Age1Enemy::Create(Age1Types age1EnemyTypes)
 		age1Enemy->textureId = "graphics/unit1.png";
 		age1Enemy->maxHp = 100;
 		age1Enemy->speed = 100;
-		age1Enemy->damage = 25;
+		age1Enemy->damage = 5;
 		age1Enemy->attackInterval = 1.f;
 		break;
 	case Age1Enemy::Age1Types::slingShot:

@@ -137,7 +137,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GameObjects\PlayerUnit.cpp" />
     <ClCompile Include="GameObjects\Age1Enemy.cpp" />
     <ClCompile Include="GameObjects\Bullet.cpp" />
     <ClCompile Include="GameObjects\EnemyBuilding.cpp" />
@@ -149,6 +148,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="GameObjects\GameObject.cpp" />
+    <ClCompile Include="GameObjects\Spawner.cpp" />
     <ClCompile Include="main.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
     </ClCompile>
@@ -156,6 +156,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="GameObjects\PlayerBuilding.cpp" />
+    <ClCompile Include="GameObjects\PlayerUnit.cpp" />
     <ClCompile Include="Scenes\SceneGame.cpp" />
     <ClCompile Include="Scenes\Scene.cpp" />
     <ClCompile Include="Framework\SceneMgr.cpp" />
@@ -168,7 +169,6 @@
     <ClCompile Include="UiHud.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameObjects\PlayerUnit.h" />
     <ClInclude Include="GameObjects\Age1Enemy.h" />
     <ClInclude Include="GameObjects\Bullet.h" />
     <ClInclude Include="GameObjects\EnemyBuilding.h" />
@@ -179,8 +179,10 @@
     <ClInclude Include="Framework\Singleton.h" />
     <ClInclude Include="Framework\Utils.h" />
     <ClInclude Include="GameObjects\GameObject.h" />
+    <ClInclude Include="GameObjects\Spawner.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="GameObjects\PlayerBuilding.h" />
+    <ClInclude Include="GameObjects\PlayerUnit.h" />
     <ClInclude Include="Scenes\SceneGame.h" />
     <ClInclude Include="Scenes\Scene.h" />
     <ClInclude Include="Framework\SceneMgr.h" />
