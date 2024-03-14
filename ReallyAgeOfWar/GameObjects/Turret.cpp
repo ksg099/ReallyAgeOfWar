@@ -4,6 +4,31 @@
 #include "Turret.h"
 #include "Age1Enemy.h"
 
+Turret* Turret::Create(Age1TurretTypes age1TurretTypes)
+{
+	Turret* turret = new Turret();
+
+	switch (age1TurretTypes)
+	{
+	case Age1TurretTypes::RockSlingshot:
+		turret->SetTexture("graphics/age1turret1.png");
+		turret->fireInterval = 2.f;
+		turret->bulletDamage = 10;
+		break;
+	case Age1TurretTypes::EggAutomatic:
+		turret->SetTexture("graphics/age1turret2.png");
+		turret->fireInterval = 1.f;
+		turret->bulletDamage = 20;
+		break;
+	case Age1TurretTypes::PrimitiveCatapult:
+		turret->SetTexture("graphics/age1turret3.png");
+		turret->fireInterval = 3.f;
+		turret->bulletDamage = 50;
+		break;
+	}
+	return turret;
+}
+
 Turret::Turret(const std::string& name) :SpriteGo(name)
 {
 }

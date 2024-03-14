@@ -7,12 +7,24 @@ class Age1Enemy;
 class Turret : public SpriteGo
 {
 
+public:
+	enum class Age1TurretTypes
+	{
+		RockSlingshot,
+		EggAutomatic,
+		PrimitiveCatapult,
+	};
+
+	static const int Age1TotalTypes = 3;
+	static Turret* Create(Age1TurretTypes age1TurretTypes);
+
 protected:
 	sf::Vector2f direction = { 0.f, 0.f };
 	sf::Vector2f look = { 1.0f, 0.f };
 
 	SceneGame* sceneGame;
 	Age1Enemy* targetEnemy;
+
 
 	float bulletSpeed = 1000.f;
 	float fireInterval = 0.5f;

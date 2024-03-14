@@ -13,24 +13,24 @@ Age1Enemy* Age1Enemy::Create(Age1Types age1EnemyTypes)
 	{
 	case Age1Enemy::Age1Types::man:
 		age1Enemy->textureId = "graphics/unit1.png";
-		age1Enemy->maxHp = 100;
+		age1Enemy->maxHp = 200;
 		age1Enemy->speed = 150;
 		age1Enemy->damage = 5;
 		age1Enemy->attackInterval = 1.f;
 		break;
 	case Age1Enemy::Age1Types::slingShot:
 		age1Enemy->textureId = "graphics/unit2.png";
-		age1Enemy->maxHp = 150;
+		age1Enemy->maxHp = 300;
 		age1Enemy->speed = 150;
-		age1Enemy->damage = 50;
+		age1Enemy->damage = 25;
 		age1Enemy->attackInterval = 1.f;
 		break;
 	case Age1Enemy::Age1Types::Rider:
 		age1Enemy->textureId = "graphics/unit3.png";
-		age1Enemy->maxHp = 200;
+		age1Enemy->maxHp = 500;
 		age1Enemy->speed = 150;
-		age1Enemy->damage = 75;
-		age1Enemy->attackInterval = 1.f;
+		age1Enemy->damage = 50;
+		age1Enemy->attackInterval = 2.f;
 		break;
 	}
 	return age1Enemy;
@@ -134,10 +134,7 @@ void Age1Enemy::Update(float dt)
 			prev = me;
 			++it;
 		}
-
 	}
-
-
 }
 
 void Age1Enemy::FixedUpdate(float dt)

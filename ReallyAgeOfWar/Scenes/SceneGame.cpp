@@ -28,7 +28,6 @@ void SceneGame::SetStatus(Status newStatus)
 		{
 			//
 		}
-
 		break;
 	case SceneGame::Status::Playing:
 		FRAMEWORK.SetTimeScale(1.f);
@@ -106,9 +105,15 @@ void SceneGame::Init() //차이
 	waves[0].timeVec.push_back(3.f); //각각의 개별 타이머
 	waves[0].typeVec.push_back(Age1Enemy::Age1Types::man);
 	waves[0].timeVec.push_back(6.f);
-	waves[0].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
+	waves[0].typeVec.push_back(Age1Enemy::Age1Types::man);
 	waves[0].timeVec.push_back(9.f);
-	waves[0].typeVec.push_back(Age1Enemy::Age1Types::Rider);
+	waves[0].typeVec.push_back(Age1Enemy::Age1Types::man);
+	waves[0].timeVec.push_back(12.f);
+	waves[0].typeVec.push_back(Age1Enemy::Age1Types::man);
+	waves[0].timeVec.push_back(15.f);
+	waves[0].typeVec.push_back(Age1Enemy::Age1Types::man);
+	waves[0].timeVec.push_back(18.f);
+	waves[0].typeVec.push_back(Age1Enemy::Age1Types::man);
 
 
 	waves[1].timeVec.push_back(3.f);
@@ -116,24 +121,38 @@ void SceneGame::Init() //차이
 	waves[1].timeVec.push_back(6.f);
 	waves[1].typeVec.push_back(Age1Enemy::Age1Types::man);
 	waves[1].timeVec.push_back(9.f);
+	waves[1].typeVec.push_back(Age1Enemy::Age1Types::man);
+	waves[1].timeVec.push_back(12.f);
+	waves[1].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
+	waves[1].timeVec.push_back(15.f);
+	waves[1].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
+	waves[1].timeVec.push_back(18.f);
 	waves[1].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
 
 	waves[2].timeVec.push_back(3.f);
 	waves[2].typeVec.push_back(Age1Enemy::Age1Types::man);
 	waves[2].timeVec.push_back(6.f);
-	waves[2].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
+	waves[2].typeVec.push_back(Age1Enemy::Age1Types::Rider);
 	waves[2].timeVec.push_back(9.f);
+	waves[2].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
+	waves[2].timeVec.push_back(12.f);
+	waves[2].typeVec.push_back(Age1Enemy::Age1Types::Rider);
+	waves[2].timeVec.push_back(15.f);
 	waves[2].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
 
 	waves[3].timeVec.push_back(3.f);
-	waves[3].typeVec.push_back(Age1Enemy::Age1Types::man);
+	waves[3].typeVec.push_back(Age1Enemy::Age1Types::Rider);
 	waves[3].timeVec.push_back(6.f);
 	waves[3].typeVec.push_back(Age1Enemy::Age1Types::Rider);
 	waves[3].timeVec.push_back(9.f);
 	waves[3].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
 	waves[3].timeVec.push_back(12.f);
 	waves[3].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
-
+	waves[3].timeVec.push_back(15.f);
+	waves[3].typeVec.push_back(Age1Enemy::Age1Types::Rider);
+	waves[3].timeVec.push_back(18.f);
+	waves[3].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
+	
 	enemySpawner = new Spawner();
 	AddGo(enemySpawner);
 

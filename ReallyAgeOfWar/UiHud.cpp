@@ -233,7 +233,9 @@ void UiHud::Update(float dt)
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
 			//유닛1 플레이어 위치에 소환
-			//playerUnit->Create();
+			Age1Enemy* enemy = Age1Enemy::Create("age1Enemy");
+			enemy->SetPosition(playerBuilding->GetPosition());
+			sceneGame->AddGo(enemy);
 		}
 	}
 
@@ -244,10 +246,13 @@ void UiHud::Update(float dt)
 		AllMsgDelete();
 		age1UiUnit2Msg->SetActive(true);
 	
-		//유닛2 버튼을 클릭했을 경우
+		//마우스 커서를 유닛2로 바꾸고
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
 			//유닛2 플레이어 위치에 소환
+			Age1Enemy* enemy = Age1Enemy::Create("age1Enemy");
+			enemy->SetPosition(playerBuilding->GetPosition());
+			sceneGame->AddGo(enemy);
 		}
 	}
 
@@ -261,6 +266,9 @@ void UiHud::Update(float dt)
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
 			//유닛3 플레이어 위치에 소환
+			Age1Enemy* enemy = Age1Enemy::Create("age1Enemy");
+			enemy->SetPosition(playerBuilding->GetPosition());
+			sceneGame->AddGo(enemy);
 		}
 	}
 
@@ -292,7 +300,18 @@ void UiHud::Update(float dt)
 		//터렛1 버튼을 클릭했을 경우
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
-			//터렛1 플레이어 빌딩 위치에 소환
+			//마우스 커서를 터렛1로 바꾸고
+			//터렛을 설치 할 수 있는 위치(플레이어 빌딩 위치 && 터렛 추가 발판
+			// 추가 발판이없으면 제외한 위치)에
+			//select.png이미지를 출력해서 이미지를 클릭시 그 위치에 터렛을 설치
+			//터렛1을 플레이어 빌딩 위치에 클릭시
+			Turret* turret = Turret::Create(Turret::Age1TurretTypes::RockSlingshot);
+			if (turret != nullptr)
+			{
+				turret->SetPosition({ playerBuilding->GetPosition().x, playerBuilding->GetPosition().y + 50.f });
+				turret->SetPosition({ turretStand->GetPosition().x, turretStand->GetPosition().y + 50.f });
+				sceneGame->AddGo(turret);
+			}
 		}
 	}
 
@@ -308,7 +327,23 @@ void UiHud::Update(float dt)
 		//터렛2 버튼을 클릭했을 경우
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
+			//마우스 커서를 터렛1로 바꾸고
+			//터렛을 설치 할 수 있는 위치(플레이어 빌딩 위치 && 터렛 추가 발판
+			// 추가 발판이없으면 제외한 위치)에
+			//select.png이미지를 출력해서 이미지를 클릭시 그 위치에 터렛을 설치
 			//터렛2 플레이어 빌딩 위치에 소환
+			Turret* turret = Turret::Create(Turret::Age1TurretTypes::EggAutomatic);
+			if (turret != nullptr)
+			{
+				if (turretStand )
+				{
+
+				}
+				turret->SetPosition({playerBuilding->GetPosition().x, playerBuilding->GetPosition().y + 50.f});
+				turret->SetPosition({ turretStand->GetPosition().x, turretStand->GetPosition().y + 50.f });
+
+				sceneGame->AddGo(turret);
+			}
 		}
 	}
 
@@ -321,9 +356,21 @@ void UiHud::Update(float dt)
 		age1UiTurret3Msg->SetActive(true);
 	
 		//터렛3 버튼을 클릭했을 경우
+		//마우스 커서를 터렛1로 바꾸고
+		//터렛을 설치 할 수 있는 위치(플레이어 빌딩 위치 && 터렛 추가 발판
+		// 추가 발판이없으면 제외한 위치)에
+		//select.png이미지를 출력해서 이미지를 클릭시 그 위치에 터렛을 설치		
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
 			//터렛3 플레이어 빌딩 위치에 소환
+			Turret* turret = Turret::Create(Turret::Age1TurretTypes::PrimitiveCatapult);
+			if (turret != nullptr)
+			{
+				turret->SetPosition({ playerBuilding->GetPosition().x, playerBuilding->GetPosition().y + 50.f });
+				turret->SetPosition({ turretStand->GetPosition().x, turretStand->GetPosition().y + 50.f });
+				//터렛 스탠드가 존재 할 경우
+				sceneGame->AddGo(turret);
+			}
 		}
 	}
 
@@ -334,6 +381,10 @@ void UiHud::Update(float dt)
 		AllMsgDelete();
 		turretAddMsg->SetActive(true);
 
+		//마우스 커서를 터렛1로 바꾸고
+		//터렛을 설치 할 수 있는 위치(플레이어 빌딩 위치 && 터렛 추가 발판
+		// 추가 발판이없으면 제외한 위치)에
+		//select.png이미지를 출력해서 이미지를 클릭시 그 위치에 터렛을 설치
 		//터렛 추가 위치 버튼을 클릭했을 경우
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
@@ -358,6 +409,10 @@ void UiHud::Update(float dt)
 		turretSellMsg->SetActive(true);
 
 		//터렛 되팔기 버튼을 클릭했을 경우
+		//마우스 커서를 터렛sell이미지로 바꾸고
+		//터렛이 설치 되어 있는 위치(플레이어 빌딩 위치 && 터렛 추가 발판
+		//추가 발판이없으면 제외한 위치)에 설치 되어 있지 않으면 수행 하지 않게
+		//터렛 클릭시 터렛을 active(false)하고 해당 터렛의 가격만큼 현재 돈 증가 되게
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
 			//turretCancelBtn->SetActive(true);
@@ -375,15 +430,6 @@ void UiHud::Update(float dt)
 			//터렛3을 제거 후 그만큼 돈 증가 추가 코드 수정 필요
 			sceneGame->AddMoney(100);
 		}
-
-		//터렛 되팔기 내에 있는 cancel버튼 클릭시
-		//sf::FloatRect turretCancelBtnBounds = turretCancelBtn->GetGlobalBounds();
-		//if (turretCancelBtnBounds.contains(UiMousePos))
-		//{
-		//	//터렛 되팔기 기능 수행할 코드 추가
-		//	AllMsgDelete();
-
-		//}
 	}
 
 	//업그레이드 버튼에 마우스 커서가 위치 할 경우
@@ -396,7 +442,9 @@ void UiHud::Update(float dt)
 		//업그레이드 버튼을 클릭했을 경우
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
-			//업그레이드 함수 불러오기 일정 경험치가 도달할 경우에만 업그레이드 가능
+			//ex) 4000경험치에 도달시 업그레이드가 가능할 경우
+			//현재 경험치를 확인하고 4000을 <=일 경우 업그레이드 함수 실행
+
 		}
 	}
 
@@ -409,6 +457,7 @@ void UiHud::Update(float dt)
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
 			//살아있는 적군 유닛들을 전부 제거
+			//쿨타임을 추가해야 하지 않을까
 			sceneGame->EnemyClear();
 		}
 	}
