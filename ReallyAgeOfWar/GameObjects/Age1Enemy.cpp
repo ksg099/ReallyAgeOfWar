@@ -14,21 +14,21 @@ Age1Enemy* Age1Enemy::Create(Age1Types age1EnemyTypes)
 	case Age1Enemy::Age1Types::man:
 		age1Enemy->textureId = "graphics/unit1.png";
 		age1Enemy->maxHp = 100;
-		age1Enemy->speed = 100;
+		age1Enemy->speed = 150;
 		age1Enemy->damage = 5;
 		age1Enemy->attackInterval = 1.f;
 		break;
 	case Age1Enemy::Age1Types::slingShot:
 		age1Enemy->textureId = "graphics/unit2.png";
 		age1Enemy->maxHp = 150;
-		age1Enemy->speed = 100;
+		age1Enemy->speed = 150;
 		age1Enemy->damage = 50;
 		age1Enemy->attackInterval = 1.f;
 		break;
 	case Age1Enemy::Age1Types::Rider:
 		age1Enemy->textureId = "graphics/unit3.png";
 		age1Enemy->maxHp = 200;
-		age1Enemy->speed = 100;
+		age1Enemy->speed = 150;
 		age1Enemy->damage = 75;
 		age1Enemy->attackInterval = 1.f;
 		break;
@@ -102,14 +102,41 @@ void Age1Enemy::Update(float dt)
 		}
 	}
 	
-	else //충돌하지 않을때만 움직이게 변경
+	else //건물과 충돌하지 않을때만 건물쪽으로 움직이게 변경
 	{
-		direction = playerBuilding->GetPosition() - position;
+		sf::Vector2f targetPosition = playerBuilding->GetPosition();
+		sf::Vector2f direction = targetPosition - GetPosition();
+		//direction = playerBuilding->GetPosition() - position;
 		direction.y = 0.f;
 		Utils::Normalize(direction);
+
 		sf::Vector2f pos = position + direction * speed * dt;
 		SetPosition(pos);
+
+		const std::list<GameObject*>& list = sceneGame->GetEnemyList();
+		auto it = list.begin();
+		GameObject* prev = nullptr;
+		while (it != list.end())
+		{
+			GameObject* me = *it;
+			if (this == me && prev != nullptr)
+			{
+				sf::FloatRect otherBounds = prev->GetGlobalBounds();
+				sf::FloatRect myBounds = GetGlobalBounds();
+				if (myBounds.intersects(otherBounds))
+				{
+					float delta = (otherBounds.left + otherBounds.width) - myBounds.left;
+					Translate({ delta, 0.f });
+				}
+				break;
+			}
+			prev = me;
+			++it;
+		}
+
 	}
+
+
 }
 
 void Age1Enemy::FixedUpdate(float dt)

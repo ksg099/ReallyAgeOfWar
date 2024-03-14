@@ -18,7 +18,7 @@ void SceneGame::SetStatus(Status newStatus)
 	switch (currentStatus)
 	{
 	case SceneGame::Status::NextWave:
-		FRAMEWORK.SetTimeScale(1.f);
+		FRAMEWORK.SetTimeScale(3.f);
 		currentWave++;
 		if (currentWave < waves.size())
 		{
@@ -76,7 +76,7 @@ void SceneGame::Init() //차이
 	hud = new UiHud("Hud");
 	AddGo(hud, Ui);
 
-	pauseMsg = new TextGo("PAUSED");
+	pauseMsg = new TextGo("pauseMsg");
 	pauseMsg->Set(fontResMgr.Get("fonts/LiberationSans.ttf"), "PAUSED Press space again to resume", 60, sf::Color::White);
 	pauseMsg->SetPosition({ 0.f, 0.f });
 	pauseMsg->SetOrigin(Origins::MC);
@@ -84,7 +84,7 @@ void SceneGame::Init() //차이
 	AddGo(pauseMsg, Ui);
 
 
-	loseMsg = new TextGo("exitMsg");
+	loseMsg = new TextGo("loseMsg");
 	loseMsg->Set(fontResMgr.Get("fonts/LiberationSans.ttf"), "Exit Press Esc to Title", 60, sf::Color::White);
 	loseMsg->SetPosition({ 0.f, 0.f });
 	loseMsg->SetOrigin(Origins::MC);
@@ -92,7 +92,7 @@ void SceneGame::Init() //차이
 	AddGo(loseMsg, Ui);
 
 
-	winMsg = new TextGo("exitMsg");
+	winMsg = new TextGo("winMsg");
 	winMsg->Set(fontResMgr.Get("fonts/LiberationSans.ttf"), "Exit Press Esc to Title", 60, sf::Color::White);
 	winMsg->SetPosition({ 0.f, 0.f });
 	winMsg->SetOrigin(Origins::MC);
@@ -103,97 +103,36 @@ void SceneGame::Init() //차이
 	waves.resize(totalWave);
 
 
-	//waves.resize(6);
-	////처음 적 유닛 등장은 5초 뒤 등장
-	//for (int wave = 0; wave < 6; wave++)
-	//{
-	//	waves[wave].timeVec.push_back(5.f);
-	//	waves[0].typeVec.push_back(Age1Enemy::Age1Types::man);
-	//}
+	waves[0].timeVec.push_back(3.f); //각각의 개별 타이머
+	waves[0].typeVec.push_back(Age1Enemy::Age1Types::man);
+	waves[0].timeVec.push_back(6.f);
+	waves[0].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
+	waves[0].timeVec.push_back(9.f);
+	waves[0].typeVec.push_back(Age1Enemy::Age1Types::Rider);
 
-	//for (int i = 0; i < 5; i++)
-	//{
-	//	waves[wave].timeVec.push_back(3.f);
-	//	waves[wave].typeVec.push_back(Age1Enemy::Age1Types::man);
-	//}
 
-	waves[0].timeVec.push_back(5.f);
-	waves[0].typeVec.push_back(Age1Enemy::Age1Types::man);
-	waves[0].timeVec.push_back(3.f);
-	waves[0].typeVec.push_back(Age1Enemy::Age1Types::man);
-	waves[0].timeVec.push_back(3.f);
-	waves[0].typeVec.push_back(Age1Enemy::Age1Types::man);
-	waves[0].timeVec.push_back(3.f);
-	waves[0].typeVec.push_back(Age1Enemy::Age1Types::man);
-	waves[0].timeVec.push_back(3.f);
-	waves[0].typeVec.push_back(Age1Enemy::Age1Types::man);
-	waves[0].timeVec.push_back(3.f);
-	waves[0].typeVec.push_back(Age1Enemy::Age1Types::man);
-
-	waves[1].timeVec.push_back(5.f);
-	waves[1].typeVec.push_back(Age1Enemy::Age1Types::man);
 	waves[1].timeVec.push_back(3.f);
 	waves[1].typeVec.push_back(Age1Enemy::Age1Types::man);
-	waves[1].timeVec.push_back(3.f);
+	waves[1].timeVec.push_back(6.f);
 	waves[1].typeVec.push_back(Age1Enemy::Age1Types::man);
-	waves[1].timeVec.push_back(3.f);
-	waves[1].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
-	waves[1].timeVec.push_back(3.f);
-	waves[1].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
-	waves[1].timeVec.push_back(3.f);
+	waves[1].timeVec.push_back(9.f);
 	waves[1].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
 
-	waves[2].timeVec.push_back(5.f);
-	waves[2].typeVec.push_back(Age1Enemy::Age1Types::man);
 	waves[2].timeVec.push_back(3.f);
+	waves[2].typeVec.push_back(Age1Enemy::Age1Types::man);
+	waves[2].timeVec.push_back(6.f);
 	waves[2].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
-	waves[2].timeVec.push_back(3.f);
-	waves[2].typeVec.push_back(Age1Enemy::Age1Types::man);
-	waves[2].timeVec.push_back(3.f);
-	waves[2].typeVec.push_back(Age1Enemy::Age1Types::man);
-	waves[2].timeVec.push_back(3.f);
+	waves[2].timeVec.push_back(9.f);
 	waves[2].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
-	waves[2].timeVec.push_back(3.f);
-	waves[2].typeVec.push_back(Age1Enemy::Age1Types::Rider);
 
-	waves[3].timeVec.push_back(5.f);
-	waves[3].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
 	waves[3].timeVec.push_back(3.f);
-	waves[3].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
-	waves[3].timeVec.push_back(3.f);
+	waves[3].typeVec.push_back(Age1Enemy::Age1Types::man);
+	waves[3].timeVec.push_back(6.f);
 	waves[3].typeVec.push_back(Age1Enemy::Age1Types::Rider);
-	waves[3].timeVec.push_back(3.f);
+	waves[3].timeVec.push_back(9.f);
 	waves[3].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
-	waves[3].timeVec.push_back(3.f);
+	waves[3].timeVec.push_back(12.f);
 	waves[3].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
-	waves[3].timeVec.push_back(3.f);
-	waves[3].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
-
-	waves[4].timeVec.push_back(5.f);
-	waves[4].typeVec.push_back(Age1Enemy::Age1Types::man);
-	waves[4].timeVec.push_back(3.f);
-	waves[4].typeVec.push_back(Age1Enemy::Age1Types::Rider);
-	waves[4].timeVec.push_back(3.f);
-	waves[4].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
-	waves[4].timeVec.push_back(3.f);
-	waves[4].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
-	waves[4].timeVec.push_back(3.f);
-	waves[4].typeVec.push_back(Age1Enemy::Age1Types::Rider);
-	waves[4].timeVec.push_back(3.f);
-	waves[4].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
-
-	waves[5].timeVec.push_back(5.f);
-	waves[5].typeVec.push_back(Age1Enemy::Age1Types::Rider);
-	waves[5].timeVec.push_back(3.f);
-	waves[5].typeVec.push_back(Age1Enemy::Age1Types::Rider);
-	waves[5].timeVec.push_back(3.f);
-	waves[5].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
-	waves[5].timeVec.push_back(3.f);
-	waves[5].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
-	waves[5].timeVec.push_back(3.f);
-	waves[5].typeVec.push_back(Age1Enemy::Age1Types::Rider);
-	waves[5].timeVec.push_back(3.f);
-	waves[5].typeVec.push_back(Age1Enemy::Age1Types::slingShot);
 
 	enemySpawner = new Spawner();
 	AddGo(enemySpawner);
@@ -258,7 +197,15 @@ void SceneGame::Exit()
 
 void SceneGame::Update(float dt)
 {
-	Scene::Update(dt);
+	enemyList.clear();
+	FindGoAll("Enemy", enemyList);
+	enemyList.sort([this](GameObject* lhs, GameObject* rhs)
+		{
+			float distLhs = Utils::Distance(lhs->GetPosition(), playerbuilding->GetPosition());
+			float distRhs = Utils::Distance(rhs->GetPosition(), playerbuilding->GetPosition());
+			return distLhs < distRhs;
+		}
+	);
 
 	//뷰의 중심을 가져옴
 	sf::Vector2f currentCenter = worldView.getCenter();
@@ -271,32 +218,31 @@ void SceneGame::Update(float dt)
 
 	age1Turrent1->SetPosition({ playerbuilding->GetPosition().x + 180.f, playerbuilding->GetPosition().y - 125.f });
 
-	//필살기
-	if (InputMgr::GetKeyDown(sf::Keyboard::Delete))
-	{
-		//UnitClear();
-	}
-
-	if (playerbuilding->GetHp() <= 0)
-	{
-		SetStatus(Status::GameOver);
-	}
 
 	switch (currentStatus)
 	{
-	//웨이브가 끝나면 플레이 상태로 돌린다.
 	case SceneGame::Status::NextWave:
 		SetStatus(Status::Playing);
 		break;
-
-	//게임중 상태에서 Escape누르면 일시정지 상태로 전환
 	case SceneGame::Status::Playing:
+		//게임중 상태에서 Escape누르면 일시정지 상태로 전환
 		if (InputMgr::GetKeyDown(sf::Keyboard::Space))
 		{
 			SetStatus(Status::Pause);
 			pauseMsg->SetActive(true);
 		}
 		break;
+
+		//필살기
+		if (InputMgr::GetKeyDown(sf::Keyboard::Delete))
+		{
+			//UnitClear();
+		}
+
+		if (playerbuilding->GetHp() <= 0)
+		{
+			SetStatus(Status::GameOver);
+		}
 
 	case SceneGame::Status::Pause:
 		// 일시정지 상태에서 'Space'를 누르면 게임 재개
@@ -307,7 +253,7 @@ void SceneGame::Update(float dt)
 			
 		}
 		break;
-	//게임 패배시
+
 	case SceneGame::Status::GameOver:
 		loseMsg->SetActive(true);
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
@@ -319,9 +265,6 @@ void SceneGame::Update(float dt)
 		
 			}
 		}
-		loseMsg->Reset();
-
-	//게임 승리시
 	case SceneGame::Status::GameWin:
 		winMsg->SetActive(true);
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
@@ -332,7 +275,6 @@ void SceneGame::Update(float dt)
 				SCENE_MGR.ChangeScene(SceneIds::Title);
 			}
 		}
-		winMsg->Reset();
 	}
 
 	//----------------------------------화면 밖으로 뷰가 나가지 않도록 하기----------------
@@ -361,6 +303,8 @@ void SceneGame::Update(float dt)
 
 	// 변경된 뷰를 윈도우에 적용합니다.
 	FRAMEWORK.GetWindow().setView(worldView);
+
+	Scene::Update(dt);
 }
 
 
@@ -369,21 +313,18 @@ void SceneGame::FixedUpdate(float dt)
 	Scene::FixedUpdate(dt);
 }
 
-//경험치 증가
 void SceneGame::AddExp(int s)
 {
 	this->Exp += s;
 	hud->SetExp(this->Exp);
 }
 
-//재화 증가
 void SceneGame::AddMoney(int s)
 {
 	this->Money += s;
 	hud->SetMoney(this->Money);
 }
 
-//모든 적 죽이기
 void SceneGame::EnemyClear()
 {
 	//for (auto enemy : enemies)
@@ -395,7 +336,6 @@ void SceneGame::EnemyClear()
 	//}
 }
 
-//웨이브가 끝났을 경우
 void SceneGame::OnWaveEnd()
 {
 	SetStatus(SceneGame::Status::NextWave);

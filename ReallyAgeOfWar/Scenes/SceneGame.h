@@ -56,6 +56,7 @@ protected:
 	int Exp = 0.f;
 	int Money = 175.f;
 
+	float nextSpawnTime = 0.f;
 	float viewMoveSpeed = 350.f;
 	float worldLeft = 0.f;
 	float worldRight = 0.f; 
@@ -64,12 +65,15 @@ protected:
 	//sf::Vector2f prevMousPos;
 
 	// wave
-	int totalWave = 6;
+	int totalWave = 4;
 	int currentWave = 0;
 	std::vector<Wave> waves;
 	Spawner* enemySpawner;
+	std::list<GameObject*> enemyList;
 
 public:
+	const std::list<GameObject*>& GetEnemyList() const { return enemyList; }
+
 	SceneGame(SceneIds id);
 	~SceneGame() override = default;
 
@@ -99,5 +103,7 @@ public:
 
 	void OnWaveEnd();
 
+	std::vector<Wave> GetWaves() { return waves; }
+	//std::vector<Age1Enemy*> GetEnemies();
 };
 

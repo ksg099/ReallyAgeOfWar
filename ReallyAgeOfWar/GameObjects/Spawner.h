@@ -24,5 +24,6 @@ public:
 
 	void WaveStart(Wave* wave);
 	void WaveEnd();
+	void UnitDistance(Age1Enemy* newUnit);
 };
 

@@ -29,8 +29,9 @@ void Turret::Release()
 void Turret::Reset()
 {
 	SpriteGo::Reset();
+
 	std::cout << SCENE_MGR.GetCurrentScene() << std::endl;
-	//ÇöÀç ¾ÀÀÌ Å¸ÀÌÆ²¾ÀÀÌ¶ó ¾ÈµÊ
+
 	sceneGame = dynamic_cast<SceneGame*>(SCENE_MGR.GetCurrentScene());
 	
 	//SetPosition({ playerbuilding->GetPosition().x + 60.f, playerbuilding->GetPosition().y - 30.f });
@@ -40,7 +41,13 @@ void Turret::Reset()
 	isFiring = false;
 	fireTimer = fireInterval;
 
-	targetEnemy = dynamic_cast<Age1Enemy*>(sceneGame->FindGo("age1Enemy"));
+	//targetEnemy = dynamic_cast<Age1Enemy*>(sceneGame->FindGo("age1Enemy"));
+	//targetEnemy = dynamic_cast<Age1Enemy*>(sceneGame->FindGo("age1Enemy"));
+	if (sceneGame != nullptr && !sceneGame->GetWaves().empty())
+	{
+		//targetEnemy = dynamic_cast<Age1Enemy*>(sceneGame->GetWaves()[0].typeVec[0]);
+	}
+
 }
 
 void Turret::Update(float dt)
