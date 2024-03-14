@@ -103,7 +103,7 @@ public:
 
 	void OnWaveEnd();
 
-	std::vector<Wave> GetWaves() { return waves; }
+	//std::vector<Wave> GetWaves() { return waves; }
 	//std::vector<Age1Enemy*> GetEnemies();
 };
 

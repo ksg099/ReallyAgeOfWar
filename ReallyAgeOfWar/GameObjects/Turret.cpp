@@ -30,23 +30,11 @@ void Turret::Reset()
 {
 	SpriteGo::Reset();
 
-	std::cout << SCENE_MGR.GetCurrentScene() << std::endl;
-
-	sceneGame = dynamic_cast<SceneGame*>(SCENE_MGR.GetCurrentScene());
-	
-	//SetPosition({ playerbuilding->GetPosition().x + 60.f, playerbuilding->GetPosition().y - 30.f });
 	SetPosition({ -730.f, 150.f });
 	SetOrigin(Origins::MC);
 
 	isFiring = false;
 	fireTimer = fireInterval;
-
-	//targetEnemy = dynamic_cast<Age1Enemy*>(sceneGame->FindGo("age1Enemy"));
-	//targetEnemy = dynamic_cast<Age1Enemy*>(sceneGame->FindGo("age1Enemy"));
-	if (sceneGame != nullptr && !sceneGame->GetWaves().empty())
-	{
-		//targetEnemy = dynamic_cast<Age1Enemy*>(sceneGame->GetWaves()[0].typeVec[0]);
-	}
 
 }
 
@@ -55,6 +43,24 @@ void Turret::Update(float dt)
 	SpriteGo::Update(dt);
 
 	fireTimer += dt;
+
+	sceneGame = dynamic_cast<SceneGame*>(SCENE_MGR.GetCurrentScene());
+
+
+	const std::list<GameObject*>& enemyList = sceneGame->GetEnemyList();
+
+	//SetPosition({ playerbuilding->GetPosition().x + 60.f, playerbuilding->GetPosition().y - 30.f });
+
+	if (!enemyList.empty())
+	{
+		// 첫 번째 적군을 타겟으로 설정
+		targetEnemy = dynamic_cast<Age1Enemy*>(enemyList.front());
+	}
+	else
+	{
+		// 적군 리스트가 비어있으면 타겟을 nullptr로 설정
+		targetEnemy = nullptr;
+	}
 
 	if (targetEnemy != nullptr && targetEnemy->isAlive) //타겟이 살아 있을때, nullptr이 아닐때
 	{

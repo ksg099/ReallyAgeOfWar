@@ -113,6 +113,7 @@ void Age1Enemy::Update(float dt)
 		sf::Vector2f pos = position + direction * speed * dt;
 		SetPosition(pos);
 
+		//
 		const std::list<GameObject*>& list = sceneGame->GetEnemyList();
 		auto it = list.begin();
 		GameObject* prev = nullptr;

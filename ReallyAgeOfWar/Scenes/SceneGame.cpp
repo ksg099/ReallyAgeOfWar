@@ -199,6 +199,8 @@ void SceneGame::Update(float dt)
 {
 	enemyList.clear();
 	FindGoAll("Enemy", enemyList);
+	//리스트를 넘겨줄때 죽어있는놈들은 제거해줘서 살아 있는 놈들만 넘겨줘서 죽은놈들 충돌을 방지함
+	enemyList.remove_if([](GameObject* obj) { return !obj->GetActive(); });
 	enemyList.sort([this](GameObject* lhs, GameObject* rhs)
 		{
 			float distLhs = Utils::Distance(lhs->GetPosition(), playerbuilding->GetPosition());
