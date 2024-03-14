@@ -85,5 +85,7 @@ public:
 	void AddExp(int s);
 	void AddMoney(int s);
 
+	void EnemyClear();
+
 };
 

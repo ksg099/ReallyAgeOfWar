@@ -260,6 +260,17 @@ void SceneGame::AddMoney(int s)
 	hud->SetMoney(this->Money);
 }
 
+void SceneGame::EnemyClear()
+{
+	//for (auto enemy : enemies)
+	//{
+	//	if (enemy->isAlive)
+	//	{
+	//		enemy->OnDie();
+	//	}
+	//}
+}
+
 void SceneGame::Draw(sf::RenderWindow& window)
 {
 	Scene::Draw(window);

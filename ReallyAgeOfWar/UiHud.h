@@ -86,17 +86,12 @@ public:
 	void SetMoney(int s);
 	void AddMoney(int m);
 
-	void Ui1unitMsg();
-	void Ui1turretMsg();
-
 	void AllMsgDelete();
+	
+	void UnitTrue();
+	void UnitFalse();
 
-	void UnitMsgDelete();
-	void TurretMsgDelete();
+	void TurretTrue();
+	void TurretFalse();
 
-
-	void Ui1unitClick();
-	void Ui1turretClick();
-
-	void UiBack();
 };

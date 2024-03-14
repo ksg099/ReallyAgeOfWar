@@ -215,13 +215,9 @@ void UiHud::Update(float dt)
 		//유닛 버튼을 클릭했을 경우
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
-			age1UiTurret1->SetActive(false);
-			age1UiTurret2->SetActive(false);
-			age1UiTurret3->SetActive(false);
-
-			age1UiUnit1->SetActive(true);
-			age1UiUnit2->SetActive(true);
-			age1UiUnit3->SetActive(true);
+			UnitTrue();
+			TurretFalse();
+		
 			backBtn->SetActive(true);
 		}
 	}
@@ -278,13 +274,8 @@ void UiHud::Update(float dt)
 		//터렛 버튼을 클릭했을 경우
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
-			age1UiUnit1->SetActive(false);
-			age1UiUnit2->SetActive(false);
-			age1UiUnit3->SetActive(false);
-
-			age1UiTurret1->SetActive(true);
-			age1UiTurret2->SetActive(true);
-			age1UiTurret3->SetActive(true);
+			TurretTrue();
+			UnitFalse();
 
 			backBtn->SetActive(true);
 		}
@@ -345,15 +336,11 @@ void UiHud::Update(float dt)
 		//터렛 추가 위치 버튼을 클릭했을 경우
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
-			turretUiSelect->SetActive(false);
-			age1UiUnit1->SetActive(false);
-			age1UiUnit2->SetActive(false);
-			age1UiUnit3->SetActive(false);
-			
-			age1UiTurret1->SetActive(false);
-			age1UiTurret2->SetActive(false);
-			age1UiTurret3->SetActive(false);
 
+			UnitFalse();
+			TurretFalse();
+
+			turretUiSelect->SetActive(false);
 			turretAdd->SetActive(false);
 			turretSell->SetActive(false);
 			//turretCancelBtn->SetActive(false);
@@ -373,18 +360,18 @@ void UiHud::Update(float dt)
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
 			//turretCancelBtn->SetActive(true);
-			backBtn->SetActive(true);
+
+			UnitFalse();
+			TurretFalse();
+
 
 			turretUiSelect->SetActive(false);
-			age1UiUnit1->SetActive(false);
-			age1UiUnit2->SetActive(false);
-			age1UiUnit3->SetActive(false);
 			turretAdd->SetActive(false);
 			turretSell->SetActive(false);
-			age1UiTurret1->SetActive(false);
-			age1UiTurret2->SetActive(false);
-			age1UiTurret3->SetActive(false);
-			//터렛3을 제거 후 그만큼 돈 증가
+
+			backBtn->SetActive(true);
+			
+			//터렛3을 제거 후 그만큼 돈 증가 추가 코드 수정 필요
 			sceneGame->AddMoney(100);
 		}
 
@@ -412,6 +399,19 @@ void UiHud::Update(float dt)
 		}
 	}
 
+
+	//필살기 버튼 위에 커서가 존재하여 클릭 했을 경우
+	sf::FloatRect ultimateBounds = ultimate->GetGlobalBounds();
+	if (ultimateBounds.contains(UiMousePos))
+	{
+
+		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
+		{
+			//살아있는 적군 유닛들을 전부 제거
+			//sceneGame->EnemyClear();
+		}
+	}
+
 	//뒤로가기 버튼에 마우스 커서가 위치 할 경우
 	sf::FloatRect backBtnBounds = backBtn->GetGlobalBounds();
 	if (backBtnBounds.contains(UiMousePos))
@@ -423,16 +423,13 @@ void UiHud::Update(float dt)
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
 			//turretCancelBtn->SetActive(false);
+			UnitFalse();
+			TurretFalse();
+
 			turretUiSelect->SetActive(false);
-			age1UiUnit1->SetActive(false);
-			age1UiUnit2->SetActive(false);
-			age1UiUnit3->SetActive(false);
 			turretAdd->SetActive(false);
 			turretSell->SetActive(false);
 
-			age1UiTurret1->SetActive(false);
-			age1UiTurret2->SetActive(false);
-			age1UiTurret3->SetActive(false);
 			backBtn->SetActive(false);
 		}
 	}
@@ -459,14 +456,6 @@ void UiHud::AddMoney(int m)
 	MoneyCount += m;
 }
 
-void UiHud::Ui1unitMsg()
-{
-}
-
-void UiHud::Ui1turretMsg()
-{
-}
-
 void UiHud::AllMsgDelete()
 {
 	unitUiSelectMsg->SetActive(false);
@@ -483,43 +472,45 @@ void UiHud::AllMsgDelete()
 	backBtnMsg->SetActive(false);
 }
 
-void UiHud::UnitMsgDelete()
+void UiHud::UnitTrue()
 {
-	age1UiUnit1Msg->SetActive(false);
-	age1UiUnit2Msg->SetActive(false);
-	age1UiUnit3Msg->SetActive(false);
+	age1UiUnit1->SetActive(true);
+	age1UiUnit2->SetActive(true);
+	age1UiUnit3->SetActive(true);
 }
 
-void UiHud::TurretMsgDelete()
+void UiHud::UnitFalse()
 {
-	age1UiTurret1Msg->SetActive(false);
-	age1UiTurret2Msg->SetActive(false);
-	age1UiTurret3Msg->SetActive(false);
+	age1UiUnit1->SetActive(false);
+	age1UiUnit2->SetActive(false);
+	age1UiUnit3->SetActive(false);
 }
 
-void UiHud::Ui1unitClick()
+void UiHud::TurretTrue()
 {
+	age1UiTurret1->SetActive(true);
+	age1UiTurret2->SetActive(true);
+	age1UiTurret3->SetActive(true);
 }
 
-void UiHud::Ui1turretClick()
+void UiHud::TurretFalse()
 {
-}
-
-void UiHud::UiBack()
-{
+	age1UiTurret1->SetActive(false);
+	age1UiTurret2->SetActive(false);
+	age1UiTurret3->SetActive(false);
 }
 
 void UiHud::Draw(sf::RenderWindow& window)
 {
 	SpriteGo::Draw(window);
 
+	textMoney.Draw(window);
+	textExp.Draw(window);
 	unitUiSelect->Draw(window);
 	turretUiSelect->Draw(window);
 	turretAdd->Draw(window);
 	turretSell->Draw(window);
 	upgrade->Draw(window);
-	textExp.Draw(window);
-	textMoney.Draw(window);
 	ultimate->Draw(window);
 
 	if (pauseMsg->GetActive() || exitMsg->GetActive())
