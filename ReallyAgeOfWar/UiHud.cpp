@@ -409,7 +409,7 @@ void UiHud::Update(float dt)
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
 			//살아있는 적군 유닛들을 전부 제거
-			//sceneGame->EnemyClear();
+			sceneGame->EnemyClear();
 		}
 	}
 

@@ -18,7 +18,7 @@ void Bullet::Fire(const sf::Vector2f& dir, float s, int d)
 void Bullet::Init()
 {
 	SpriteGo::Init();
-	SetTexture("graphics/bullet.png");
+	SetTexture("graphics/age1Bullet.png");
 	SetOrigin(Origins::ML);
 	SetScale({ 2.f,2.f });
 	GetHitBox();

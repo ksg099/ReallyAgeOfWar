@@ -329,13 +329,14 @@ void SceneGame::AddMoney(int s)
 
 void SceneGame::EnemyClear()
 {
-	//for (auto enemy : enemies)
-	//{
-	//	if (enemy->isAlive)
-	//	{
-	//		enemy->OnDie();
-	//	}
-	//}
+	for (auto enemyObj : enemyList)
+	{
+		Age1Enemy* enemy = dynamic_cast<Age1Enemy*>(enemyObj);
+		if (enemy && enemy->isAlive)
+		{
+			enemy->OnDie();
+		}
+	}
 }
 
 void SceneGame::OnWaveEnd()
