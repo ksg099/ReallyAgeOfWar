@@ -39,6 +39,8 @@ public:
 	Turret(const std::string& name = "");
 	~Turret() override = default;
 
+	bool isPlace = true;
+
 
 	void Init() override;
 	void Release() override;

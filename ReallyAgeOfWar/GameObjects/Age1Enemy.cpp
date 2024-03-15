@@ -106,7 +106,6 @@ void Age1Enemy::Update(float dt)
 	{
 		sf::Vector2f targetPosition = playerBuilding->GetPosition();
 		sf::Vector2f direction = targetPosition - GetPosition();
-		//direction = playerBuilding->GetPosition() - position;
 		direction.y = 0.f;
 		Utils::Normalize(direction);
 
@@ -119,6 +118,7 @@ void Age1Enemy::Update(float dt)
 		GameObject* prev = nullptr;
 		while (it != list.end())
 		{
+			//현재의 내 유닛과 그 전의 유닛과 비교
 			GameObject* me = *it;
 			if (this == me && prev != nullptr)
 			{

@@ -13,7 +13,7 @@ class EnemyBuilding;
 class Turret;
 class Spawner;
 
-struct Wave
+struct Wave //웨이브의 시간과 타입을 구조체로 정함
 {
 	std::vector<float> timeVec;
 	std::vector<Age1Enemy::Age1Types> typeVec;
@@ -40,16 +40,13 @@ protected:
 	UiHud* hud;
 	PlayerBuilding* playerbuilding;
 	EnemyBuilding* enemybuilding;
-
-	Turret* age1Turrent1;
+	//Turret* age1Turrent;
 
 	SpriteGo* background;
 
-	//TextGo* pauseclose;
 	TextGo* pauseMsg;
 	TextGo* loseMsg;
 	TextGo* winMsg;
-	//sf::RectangleShape pauseshape;
 
 	bool ispause = false;
 
@@ -62,17 +59,18 @@ protected:
 	float worldRight = 0.f; 
 	float worldWidth = worldView.getSize().x; //월드 너비
 
-	//sf::Vector2f prevMousPos;
-
 	// wave
 	int totalWave = 4;
 	int currentWave = 0;
 	std::vector<Wave> waves;
 	Spawner* enemySpawner;
 	std::list<GameObject*> enemyList;
+	std::list<GameObject*> turretList;
 
 public:
+
 	const std::list<GameObject*>& GetEnemyList() const { return enemyList; }
+	//const std::list<GameObject*>& GetTurretList() const { return turretList; }
 
 	SceneGame(SceneIds id);
 	~SceneGame() override = default;
@@ -80,11 +78,8 @@ public:
 	Status GetStatus() const { return currentStatus; }
 	void SetStatus(Status newStatus);
 
-	//UiHud* GetHud() const
-	//{
-	//	return hud;
-	//}
-
+	bool isPlace = true;
+	
 	void Init() override;
 	void Release() override;
 
@@ -102,8 +97,8 @@ public:
 	void EnemyClear();
 
 	void OnWaveEnd();
+	void AddTurret(Turret* turret);
 
-	//std::vector<Wave> GetWaves() { return waves; }
-	//std::vector<Age1Enemy*> GetEnemies();
+	bool TurretPlaceCheck(const sf::Vector2f& position);
 };
 

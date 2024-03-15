@@ -6,27 +6,27 @@
 
 Turret* Turret::Create(Age1TurretTypes age1TurretTypes)
 {
-	Turret* turret = new Turret();
+	Turret* age1Turret = new Turret();
 
 	switch (age1TurretTypes)
 	{
 	case Age1TurretTypes::RockSlingshot:
-		turret->SetTexture("graphics/age1turret1.png");
-		turret->fireInterval = 2.f;
-		turret->bulletDamage = 10;
+		age1Turret->SetTexture("graphics/age1turret1.png");
+		age1Turret->fireInterval = 2.f;
+		age1Turret->bulletDamage = 10;
 		break;
 	case Age1TurretTypes::EggAutomatic:
-		turret->SetTexture("graphics/age1turret2.png");
-		turret->fireInterval = 1.f;
-		turret->bulletDamage = 20;
+		age1Turret->SetTexture("graphics/age1turret2.png");
+		age1Turret->fireInterval = 1.f;
+		age1Turret->bulletDamage = 20;
 		break;
 	case Age1TurretTypes::PrimitiveCatapult:
-		turret->SetTexture("graphics/age1turret3.png");
-		turret->fireInterval = 3.f;
-		turret->bulletDamage = 50;
+		age1Turret->SetTexture("graphics/age1turret3.png");
+		age1Turret->fireInterval = 3.f;
+		age1Turret->bulletDamage = 50;
 		break;
 	}
-	return turret;
+	return age1Turret;
 }
 
 Turret::Turret(const std::string& name) :SpriteGo(name)
@@ -36,8 +36,8 @@ Turret::Turret(const std::string& name) :SpriteGo(name)
 void Turret::Init()
 {
 	SpriteGo::Init();
-	SetTexture("graphics/age1turret1.png");
-	SetOrigin(Origins::MC);
+	//SetTexture("graphics/age1turret1.png");
+	//SetOrigin(Origins::MC);
 
 	isFiring = false;
 	fireTimer = fireInterval;
@@ -55,8 +55,8 @@ void Turret::Reset()
 {
 	SpriteGo::Reset();
 
-	SetPosition({ -730.f, 150.f });
-	SetOrigin(Origins::MC);
+	//SetPosition({ -730.f, 150.f });
+	//SetOrigin(Origins::MC);
 
 	isFiring = false;
 	fireTimer = fireInterval;

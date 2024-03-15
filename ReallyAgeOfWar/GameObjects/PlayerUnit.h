@@ -41,6 +41,7 @@ public:
 
 	PlayerUnit(const std::string& name = "");
 
+
 	bool isAlive = true;
 	void Init() override;
 	void Release() override;

@@ -5,6 +5,7 @@
 #include "EnemyBuilding.h"
 #include "Turret.h"
 #include "UiHud.h"
+#include "PlayerUnit.h"
 //#include "Age1Enemy.h"
 #include "Spawner.h"
 
@@ -44,7 +45,7 @@ void SceneGame::SetStatus(Status newStatus)
 
 void SceneGame::Init() //차이
 {
-	
+
 
 	//게임 씬에서 배경 출력
 	background = new SpriteGo("BackGround");
@@ -67,9 +68,9 @@ void SceneGame::Init() //차이
 	AddGo(enemybuilding, World);
 
 
-	//터렛 출력
-	age1Turrent1 = new Turret("age1Turrent1");
-	AddGo(age1Turrent1, World);
+	////터렛 출력
+	//age1Turrent = new Turret("age1Turrent");
+	//AddGo(age1Turrent, World);
 
 	//Ui
 	hud = new UiHud("Hud");
@@ -100,6 +101,7 @@ void SceneGame::Init() //차이
 
 	// 웨이브 초기화
 	waves.resize(totalWave);
+
 
 
 	waves[0].timeVec.push_back(3.f); //각각의 개별 타이머
@@ -156,6 +158,9 @@ void SceneGame::Init() //차이
 	enemySpawner = new Spawner();
 	AddGo(enemySpawner);
 
+
+	//
+
 	Scene::Init();
 }
 
@@ -165,6 +170,7 @@ void SceneGame::Release()
 
 void SceneGame::Enter() //차이
 {
+
 	//마우스 커서 안보이게하는 부분 주석처리
 	//FRAMEWORK.GetWindow().setMouseCursorVisible(false);
 
@@ -197,8 +203,14 @@ void SceneGame::Enter() //차이
 	hud->SetMoney(175);
 	hud->SetExp(0);
 
+	this->Exp = 0;
+	this->Money = 0;
 
 	currentWave = -1;
+
+	pauseMsg->SetActive(false);
+	loseMsg->SetActive(false);
+	winMsg->SetActive(false);
 
 	SetStatus(Status::NextWave);
 
@@ -228,6 +240,11 @@ void SceneGame::Update(float dt)
 		}
 	);
 
+
+	//turretList.clear();
+	//FindGoAll("Turret", turretList);
+
+
 	//뷰의 중심을 가져옴
 	sf::Vector2f currentCenter = worldView.getCenter();
 	sf::Vector2f windowSize = (sf::Vector2f)FRAMEWORK.GetWindowSize();
@@ -237,7 +254,7 @@ void SceneGame::Update(float dt)
 	sf::Vector2f uiMousePos = ScreenToUi((sf::Vector2i)currMousePos);
 	sf::Vector2f worldMousePos = ScreenToWorld((sf::Vector2i)currMousePos);
 
-	age1Turrent1->SetPosition({ playerbuilding->GetPosition().x + 180.f, playerbuilding->GetPosition().y - 125.f });
+	//age1Turrent->SetPosition({ playerbuilding->GetPosition().x + 180.f, playerbuilding->GetPosition().y - 125.f });
 
 
 	switch (currentStatus)
@@ -283,8 +300,8 @@ void SceneGame::Update(float dt)
 			if (exitMsgBounds.contains(uiMousePos))
 			{
 				SCENE_MGR.ChangeScene(SceneIds::Title);
-		
 			}
+			//게임을 초기화 해주는 부분 추가해야할듯
 		}
 	case SceneGame::Status::GameWin:
 		winMsg->SetActive(true);
@@ -295,6 +312,7 @@ void SceneGame::Update(float dt)
 			{
 				SCENE_MGR.ChangeScene(SceneIds::Title);
 			}
+			//게임을 초기화 해주는 부분 추가해야할듯
 		}
 	}
 
@@ -363,9 +381,29 @@ void SceneGame::OnWaveEnd()
 	SetStatus(SceneGame::Status::NextWave);
 }
 
+void SceneGame::AddTurret(Turret* turret)
+{
+	if (turret != nullptr)
+	{
+		this->turretList.push_back(turret);
+	}
+}
+
+bool SceneGame::TurretPlaceCheck(const sf::Vector2f& position)
+{
+	for (auto obj : turretList)
+	{
+		Turret* turret = dynamic_cast<Turret*>(obj);
+		if (turret->GetGlobalBounds().contains(position))
+		{
+			return false; // 이미 터렛이 있으면 ㄴㄴ
+		}
+	}
+	return true; // 터렛 배치 가능
+}
+
 void SceneGame::Draw(sf::RenderWindow& window)
 {
 	Scene::Draw(window);
-
 }
 
