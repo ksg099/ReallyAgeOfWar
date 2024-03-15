@@ -6,6 +6,7 @@
 #include "TextGo.h"
 #include "SceneGame.h"
 #include "Turret.h"
+#include "PlayerUnit.h"
 
 class TextGo;
 class SceneGame;
@@ -21,10 +22,11 @@ protected:
 	std::string formatMoney = "$ : ";
 
 	SceneGame* sceneGame;
-	PlayerUnit* playerUnit;
+	//PlayerUnit* playerUnit;
 	PlayerBuilding* playerBuilding;
 
 	Turret::Age1TurretTypes turretSelectMode;
+	PlayerUnit::Age1Types unitSelectMode;
 
 	TextGo textExp;
 	TextGo textMoney;
@@ -106,5 +108,5 @@ public:
 	void TurretFalse();
 
 	//void  SetTurretSelectMode(Turret::Age1TurretTypes mode);
-	void ProcessTurretButton(SpriteGo* turretButton, const sf::Vector2f& mousePos, Turret::Age1TurretTypes turretType, const sf::Vector2f& placementPosition);
+	//void ProcessTurretButton(SpriteGo* turretButton, const sf::Vector2f& mousePos, Turret::Age1TurretTypes turretType, const sf::Vector2f& placementPosition);
 };

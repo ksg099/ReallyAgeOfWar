@@ -230,6 +230,7 @@ void UiHud::Update(float dt)
 	sf::Vector2f currMousePos = InputMgr::GetMousePos();
 	sf::Vector2f UiMousePos = sceneGame->ScreenToUi((sf::Vector2i)currMousePos);
 
+	//---------------
 
 	// 유닛 버튼에 커서가 위치할 경우
 	sf::FloatRect unitUiSelectBounds = unitUiSelect->GetGlobalBounds();
@@ -254,40 +255,69 @@ void UiHud::Update(float dt)
 	{
 		AllMsgDelete();
 		age1UiUnit1Msg->SetActive(true);
-
 		//유닛1 버튼을 클릭했을 경우
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
-			PlayerUnit* age1PlayerUnit1 = PlayerUnit::Create(PlayerUnit::Age1Types::pMan);
-			if (age1PlayerUnit1 != nullptr)
+			unitSelectMode = PlayerUnit::Age1Types::pMan;
+			PlayerUnit* newUnit = nullptr;
+			//위의 조건에 해당하는 타입이 나오면 break
+			switch (unitSelectMode)
+			{
+			case PlayerUnit::Age1Types::pMan:
+				newUnit = PlayerUnit::Create(PlayerUnit::Age1Types::pMan);
+				break;
+			case PlayerUnit::Age1Types::pSlingShot:
+				newUnit = PlayerUnit::Create(PlayerUnit::Age1Types::pSlingShot);
+				break;
+			case PlayerUnit::Age1Types::pRider:
+				newUnit = PlayerUnit::Create(PlayerUnit::Age1Types::pRider);
+				break;
+			}
+
+			if (newUnit != nullptr)
 			{
 				//유닛1 플레이어 빌딩 위치에 소환
-				age1PlayerUnit1->SetPosition({ playerBuilding->GetPosition().x + 100.f, playerBuilding->GetPosition().y - 100.f });
-				sceneGame->AddGo(age1PlayerUnit1);
+				newUnit->SetPosition({ playerBuilding->GetPosition().x + 100.f, playerBuilding->GetPosition().y - 100.f });
+				sceneGame->AddGo(newUnit);
+				age1UiUnit1Msg->SetActive(false);
 			}
 		}
 	}
-
+//-------
 	// 유닛2 버튼에 커서가 위치할 경우
 	sf::FloatRect age1UiUnit2Bounds = age1UiUnit2->GetGlobalBounds();
 	if (age1UiUnit2Bounds.contains(UiMousePos))
 	{
 		AllMsgDelete();
 		age1UiUnit2Msg->SetActive(true);
-	
-		//마우스 커서를 유닛2로 바꾸고
+		//유닛2 버튼을 클릭했을 경우
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
-			PlayerUnit* age1PlayerUnit2 = PlayerUnit::Create(PlayerUnit::Age1Types::pSlingShot);
-			if (age1PlayerUnit2 != nullptr)
+			unitSelectMode = PlayerUnit::Age1Types::pSlingShot;
+			PlayerUnit* newUnit = nullptr;
+			//위의 조건에 해당하는 타입이 나오면 break
+			switch (unitSelectMode)
 			{
-				//유닛2 플레이어 빌딩 위치에 소환
-				age1PlayerUnit2->SetPosition(playerBuilding->GetPosition());
-				sceneGame->AddGo(age1PlayerUnit2);
+			case PlayerUnit::Age1Types::pMan:
+				newUnit = PlayerUnit::Create(PlayerUnit::Age1Types::pMan);
+				break;
+			case PlayerUnit::Age1Types::pSlingShot:
+				newUnit = PlayerUnit::Create(PlayerUnit::Age1Types::pSlingShot);
+				break;
+			case PlayerUnit::Age1Types::pRider:
+				newUnit = PlayerUnit::Create(PlayerUnit::Age1Types::pRider);
+				break;
+			}
+
+			if (newUnit != nullptr)
+			{
+				//유닛3 플레이어 빌딩 위치에 소환
+				newUnit->SetPosition({ playerBuilding->GetPosition().x + 100.f, playerBuilding->GetPosition().y - 100.f });
+				sceneGame->AddGo(newUnit);
 			}
 		}
 	}
-
+//------
 	// 유닛3 버튼에 커서가 위치할 경우
 	sf::FloatRect age1UiUnit3Bounds = age1UiUnit3->GetGlobalBounds();
 	if (age1UiUnit3Bounds.contains(UiMousePos))
@@ -297,15 +327,70 @@ void UiHud::Update(float dt)
 		//유닛3 버튼을 클릭했을 경우
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
-			PlayerUnit* age1PlayerUnit3 = PlayerUnit::Create(PlayerUnit::Age1Types::pRider);
-			if (age1PlayerUnit3 != nullptr)
+			unitSelectMode = PlayerUnit::Age1Types::pRider;
+			PlayerUnit* newUnit = nullptr;
+			//위의 조건에 해당하는 타입이 나오면 break
+			switch (unitSelectMode)
+			{
+			case PlayerUnit::Age1Types::pMan:
+				newUnit = PlayerUnit::Create(PlayerUnit::Age1Types::pMan);
+				break;
+			case PlayerUnit::Age1Types::pSlingShot:
+				newUnit = PlayerUnit::Create(PlayerUnit::Age1Types::pSlingShot);
+				break;
+			case PlayerUnit::Age1Types::pRider:
+				newUnit = PlayerUnit::Create(PlayerUnit::Age1Types::pRider);
+				break;
+			}
+
+			if (newUnit != nullptr)
 			{
 				//유닛3 플레이어 빌딩 위치에 소환
-				age1PlayerUnit3->SetPosition(playerBuilding->GetPosition());
-				sceneGame->AddGo(age1PlayerUnit3);
+				newUnit->SetPosition({ playerBuilding->GetPosition().x + 100.f, playerBuilding->GetPosition().y - 100.f });
+				sceneGame->AddGo(newUnit);
+				//std::cout << "ddd" << std::endl;
 			}
 		}
 	}
+
+	//// 유닛2 버튼에 커서가 위치할 경우
+	//sf::FloatRect age1UiUnit2Bounds = age1UiUnit2->GetGlobalBounds();
+	//if (age1UiUnit2Bounds.contains(UiMousePos))
+	//{
+	//	AllMsgDelete();
+	//	age1UiUnit2Msg->SetActive(true);
+	//
+	//	//마우스 커서를 유닛2로 바꾸고
+	//	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
+	//	{
+	//		PlayerUnit* age1PlayerUnit2 = PlayerUnit::Create(PlayerUnit::Age1Types::pSlingShot);
+	//		if (age1PlayerUnit2 != nullptr)
+	//		{
+	//			//유닛2 플레이어 빌딩 위치에 소환
+	//			age1PlayerUnit2->SetPosition(playerBuilding->GetPosition());
+	//			sceneGame->AddGo(age1PlayerUnit2);
+	//		}
+	//	}
+	//}
+
+	//// 유닛3 버튼에 커서가 위치할 경우
+	//sf::FloatRect age1UiUnit3Bounds = age1UiUnit3->GetGlobalBounds();
+	//if (age1UiUnit3Bounds.contains(UiMousePos))
+	//{
+	//	AllMsgDelete();
+	//	age1UiUnit3Msg->SetActive(true);
+	//	//유닛3 버튼을 클릭했을 경우
+	//	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
+	//	{
+	//		PlayerUnit* age1PlayerUnit3 = PlayerUnit::Create(PlayerUnit::Age1Types::pRider);
+	//		if (age1PlayerUnit3 != nullptr)
+	//		{
+	//			//유닛3 플레이어 빌딩 위치에 소환
+	//			age1PlayerUnit3->SetPosition(playerBuilding->GetPosition());
+	//			sceneGame->AddGo(age1PlayerUnit3);
+	//		}
+	//	}
+	//}
 
 	//터렛 버튼에 마우스 커서가 위치 할 경우
 	sf::FloatRect turretUiSelectBounds = turretUiSelect->GetGlobalBounds();
@@ -340,6 +425,7 @@ void UiHud::Update(float dt)
 			sceneGame->TurretPlaceCheck(turretPlacementPosition))
 		{
 			turretChoice->SetActive(true);
+
 			turretSelectMode = Turret::Age1TurretTypes::RockSlingshot;
 		}
 	}
@@ -384,7 +470,7 @@ void UiHud::Update(float dt)
 	{
 		//터렛 2번 설명 메시지 출력
 		AllMsgDelete();
-		age1UiTurret1Msg->SetActive(true);
+		age1UiTurret2Msg->SetActive(true);
 
 		//터렛 번 영역을 클릭시 터렛 선택단계 스프라이트를 true로 변경
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left) &&
@@ -432,9 +518,9 @@ void UiHud::Update(float dt)
 	sf::FloatRect age1UiTurret3Bounds = age1UiTurret3->GetGlobalBounds();
 	if (age1UiTurret3Bounds.contains(UiMousePos))
 	{
-		//터렛 1번 설명 메시지 출력
+		//터렛 3번 설명 메시지 출력
 		AllMsgDelete();
-		age1UiTurret1Msg->SetActive(true);
+		age1UiTurret3Msg->SetActive(true);
 
 		//터렛 3번 영역을 클릭시 터렛 선택단계 스프라이트를 true로 변경
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left) &&
@@ -811,20 +897,20 @@ void UiHud::TurretFalse()
 	age1UiTurret3->SetActive(false);
 }
 
-void UiHud::ProcessTurretButton(SpriteGo* turretButton, const sf::Vector2f& mousePos, Turret::Age1TurretTypes turretType, const sf::Vector2f& placementPosition)
-{
-	sf::FloatRect buttonBounds = turretButton->GetGlobalBounds();
-	if (buttonBounds.contains(mousePos))
-	{
-		AllMsgDelete();
-
-		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left) && sceneGame->TurretPlaceCheck(placementPosition))
-		{
-			turretChoice->SetActive(true);
-			turretSelectMode = turretType;
-		}
-	}
-}
+//void UiHud::ProcessTurretButton(SpriteGo* turretButton, const sf::Vector2f& mousePos, Turret::Age1TurretTypes turretType, const sf::Vector2f& placementPosition)
+//{
+//	sf::FloatRect buttonBounds = turretButton->GetGlobalBounds();
+//	if (buttonBounds.contains(mousePos))
+//	{
+//		AllMsgDelete();
+//
+//		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left) && sceneGame->TurretPlaceCheck(placementPosition))
+//		{
+//			turretChoice->SetActive(true);
+//			turretSelectMode = turretType;
+//		}
+//	}
+//}
 
 void UiHud::Draw(sf::RenderWindow& window)
 {
