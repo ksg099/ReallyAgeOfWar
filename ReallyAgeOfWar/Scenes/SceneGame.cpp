@@ -25,10 +25,6 @@ void SceneGame::SetStatus(Status newStatus)
 		{
 			enemySpawner->WaveStart(&waves[currentWave]);
 		}
-		else
-		{
-			//
-		}
 		break;
 	case SceneGame::Status::Playing:
 		FRAMEWORK.SetTimeScale(1.f);
@@ -66,11 +62,6 @@ void SceneGame::Init() //차이
 	//게임 씬에서 적군 건물 출력
 	enemybuilding = new EnemyBuilding("enemybuilding");
 	AddGo(enemybuilding, World);
-
-
-	////터렛 출력
-	//age1Turrent = new Turret("age1Turrent");
-	//AddGo(age1Turrent, World);
 
 	//Ui
 	hud = new UiHud("Hud");
@@ -213,10 +204,6 @@ void SceneGame::Enter() //차이
 	winMsg->SetActive(false);
 
 	SetStatus(Status::NextWave);
-
-	//머할지
-
-	//prevMousPos = InputMgr::GetMousePos();
 }
 
 void SceneGame::Exit()
@@ -240,11 +227,6 @@ void SceneGame::Update(float dt)
 		}
 	);
 
-
-	//turretList.clear();
-	//FindGoAll("Turret", turretList);
-
-
 	//뷰의 중심을 가져옴
 	sf::Vector2f currentCenter = worldView.getCenter();
 	sf::Vector2f windowSize = (sf::Vector2f)FRAMEWORK.GetWindowSize();
@@ -253,9 +235,6 @@ void SceneGame::Update(float dt)
 	sf::Vector2f currMousePos = InputMgr::GetMousePos();
 	sf::Vector2f uiMousePos = ScreenToUi((sf::Vector2i)currMousePos);
 	sf::Vector2f worldMousePos = ScreenToWorld((sf::Vector2i)currMousePos);
-
-	//age1Turrent->SetPosition({ playerbuilding->GetPosition().x + 180.f, playerbuilding->GetPosition().y - 125.f });
-
 
 	switch (currentStatus)
 	{

@@ -193,13 +193,6 @@ void UiHud::Init()
 	ultimate->SetOrigin(Origins::TR);
 	ultimate->SetPosition({ unitUiSelect->GetPosition().x + 200.f, unitUiSelect->GetPosition().y + 50.f});
 
-	//turretCancelBtn = new SpriteGo("turretCancelBtn");
-	//turretCancelBtn->SetTexture("graphics/cancelBtn.png");
-	//turretCancelBtn->SetOrigin(Origins::TR);
-	//turretCancelBtn->SetPosition({ turretSell->GetPosition().x + 0.f, turretSell->GetPosition().y - 65.f});
-	//turretCancelBtn->SetActive(false);
-
-
 }
 
 void UiHud::Reset()
@@ -352,45 +345,6 @@ void UiHud::Update(float dt)
 			}
 		}
 	}
-
-	//// 유닛2 버튼에 커서가 위치할 경우
-	//sf::FloatRect age1UiUnit2Bounds = age1UiUnit2->GetGlobalBounds();
-	//if (age1UiUnit2Bounds.contains(UiMousePos))
-	//{
-	//	AllMsgDelete();
-	//	age1UiUnit2Msg->SetActive(true);
-	//
-	//	//마우스 커서를 유닛2로 바꾸고
-	//	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
-	//	{
-	//		PlayerUnit* age1PlayerUnit2 = PlayerUnit::Create(PlayerUnit::Age1Types::pSlingShot);
-	//		if (age1PlayerUnit2 != nullptr)
-	//		{
-	//			//유닛2 플레이어 빌딩 위치에 소환
-	//			age1PlayerUnit2->SetPosition(playerBuilding->GetPosition());
-	//			sceneGame->AddGo(age1PlayerUnit2);
-	//		}
-	//	}
-	//}
-
-	//// 유닛3 버튼에 커서가 위치할 경우
-	//sf::FloatRect age1UiUnit3Bounds = age1UiUnit3->GetGlobalBounds();
-	//if (age1UiUnit3Bounds.contains(UiMousePos))
-	//{
-	//	AllMsgDelete();
-	//	age1UiUnit3Msg->SetActive(true);
-	//	//유닛3 버튼을 클릭했을 경우
-	//	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
-	//	{
-	//		PlayerUnit* age1PlayerUnit3 = PlayerUnit::Create(PlayerUnit::Age1Types::pRider);
-	//		if (age1PlayerUnit3 != nullptr)
-	//		{
-	//			//유닛3 플레이어 빌딩 위치에 소환
-	//			age1PlayerUnit3->SetPosition(playerBuilding->GetPosition());
-	//			sceneGame->AddGo(age1PlayerUnit3);
-	//		}
-	//	}
-	//}
 
 	//터렛 버튼에 마우스 커서가 위치 할 경우
 	sf::FloatRect turretUiSelectBounds = turretUiSelect->GetGlobalBounds();
@@ -564,156 +518,6 @@ void UiHud::Update(float dt)
 			//sceneGame->AddGo(turretChoice);
 		}
 	}
-	//---------------------------
-	//if (InputMgr::GetMouseButtonDown(sf::Mouse::Left) &&
-	//	turretSelectMode == Turret::Age1TurretTypes::RockSlingshot &&
-	//	turretChoice->GetActive() &&
-	//	sceneGame->TurretPlaceCheck({ playerBuilding->GetPosition().x + 100.f, playerBuilding->GetPosition().y - 100.f }))
-	//{
-	//	Turret* age1Turret1 = Turret::Create(Turret::Age1TurretTypes::RockSlingshot);
-	//	if (age1Turret1 != nullptr)
-	//	{
-	//		age1Turret1->SetPosition({ playerBuilding->GetPosition().x + 100.f, playerBuilding->GetPosition().y - 100.f });
-	//		sceneGame->AddTurret(age1Turret1);
-	//		sceneGame->AddGo(age1Turret1);
-	//		//sceneGame->AddGo(turretChoice);
-	//		turretChoice->SetActive(false);
-	//	}
-	//}
-
-	////터렛1 버튼에 커서가 위치할 경우
-	//sf::FloatRect age1UiTurret1Bounds = age1UiTurret1->GetGlobalBounds();
-	//if (age1UiTurret1Bounds.contains(UiMousePos))
-	//{
-	//	AllMsgDelete();
-	//	age1UiTurret1Msg->SetActive(true);
-	//	//터렛1 버튼을 클릭했을 경우
-	//	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
-	//	{
-	//		turretChoice->SetActive(true);
-	//	}
-	//}
-	//////----
-
-	////터렛 2번 버튼을 누르고 turretChoice가 존재하고 이미 생긴 포탑이 없을 경우에 포탑 생성
-	//if (InputMgr::GetMouseButtonDown(sf::Mouse::Left) &&
-	//	turretChoice->GetActive() &&
-	//	sceneGame->TurretPlaceCheck({ playerBuilding->GetPosition().x + 100.f, playerBuilding->GetPosition().y - 100.f }))
-	//{
-	//	Turret* age1Turret2 = Turret::Create(Turret::Age1TurretTypes::EggAutomatic);
-	//	if (age1Turret2 != nullptr)
-	//	{
-	//		age1Turret2->SetPosition({ playerBuilding->GetPosition().x + 100.f, playerBuilding->GetPosition().y - 100.f });
-	//		sceneGame->AddTurret(age1Turret2);
-	//		sceneGame->AddGo(age1Turret2);
-	//		//sceneGame->AddGo(turretChoice);
-	//		turretChoice->SetActive(false);
-	//	}
-	//}
-
-	////터렛2 버튼에 커서가 위치할 경우
-	//sf::FloatRect age1UiTurret2Bounds = age1UiTurret2->GetGlobalBounds();
-	//if (age1UiTurret2Bounds.contains(UiMousePos))
-	//{
-	//	AllMsgDelete();
-	//	age1UiTurret2Msg->SetActive(true);
-	//	//터렛1 버튼을 클릭했을 경우
-	//	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
-	//	{
-	//		turretChoice->SetActive(true);
-	//	}
-	//}
-
-	////// 터렛2 버튼에 커서가 위치할 경우
-	//sf::FloatRect age1UiTurret2Bounds = age1UiTurret2->GetGlobalBounds();
-	//if (age1UiTurret2Bounds.contains(UiMousePos))
-	//{
-	//	AllMsgDelete();
-	//	age1UiTurret2Msg->SetActive(true);
-	//	
-	//	//터렛2 버튼을 클릭했을 경우
-	//	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
-	//	{
-	//		if (turretChoice->GetActive() && InputMgr::GetMouseButtonDown(sf::Mouse::Left))
-	//		{
-	//			if (sceneGame->TurretPlaceCheck({ playerBuilding->GetPosition().x + 100.f, playerBuilding->GetPosition().y - 100.f }))
-	//			{
-	//				Turret* age1Turret2 = Turret::Create(Turret::Age1TurretTypes::EggAutomatic);
-	//				if (age1Turret2 != nullptr)
-	//				{
-	//					age1Turret2->SetPosition({ playerBuilding->GetPosition().x + 100.f, playerBuilding->GetPosition().y - 100.f });
-	//					sceneGame->AddTurret(age1Turret2);
-	//					sceneGame->AddGo(age1Turret2);
-	//					sceneGame->AddGo(turretChoice);
-	//					turretChoice->SetActive(false);
-	//				}
-	//			}
-	//		}
-	//	}
-	//}
-
-
-	//	//터렛 2번 버튼을 누르고 turretChoice가 존재하고 이미 생긴 포탑이 없을 경우에 포탑 생성
-	//if (InputMgr::GetMouseButtonDown(sf::Mouse::Left) &&
-	//	turretChoice->GetActive() &&
-	//	sceneGame->TurretPlaceCheck({ playerBuilding->GetPosition().x + 100.f, playerBuilding->GetPosition().y - 100.f }))
-	//{
-	//	Turret* age1Turret2 = Turret::Create(Turret::Age1TurretTypes::EggAutomatic);
-	//	if (age1Turret2 != nullptr)
-	//	{
-	//		age1Turret2->SetPosition({ playerBuilding->GetPosition().x + 100.f, playerBuilding->GetPosition().y - 100.f });
-	//		sceneGame->AddTurret(age1Turret2);
-	//		sceneGame->AddGo(age1Turret2);
-	//		sceneGame->AddGo(turretChoice);
-	//		turretChoice->SetActive(false);
-	//	}
-	//}
-
-	////터렛2 버튼에 커서가 위치할 경우
-	//sf::FloatRect age1UiTurret2Bounds = age1UiTurret2->GetGlobalBounds();
-	//if (age1UiTurret2Bounds.contains(UiMousePos))
-	//{
-	//	AllMsgDelete();
-	//	age1UiTurret2Msg->SetActive(true);
-	//	//터렛1 버튼을 클릭했을 경우
-	//	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
-	//	{
-	//		turretChoice->SetActive(true);
-	//	}
-	//}
-
-
-
-	// 터렛3 버튼에 커서가 위치할 경우
-	//sf::FloatRect age1UiTurret3Bounds = age1UiTurret3->GetGlobalBounds();
-	//if (age1UiTurret3Bounds.contains(UiMousePos))
-	//{
-	//	AllMsgDelete();
-	//	age1UiTurret3Msg->SetActive(true);
-
-	//	//터렛3 버튼을 클릭했을 경우
-	//	if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
-	//	{
-	//		//터렛리스트를 순회를 돌아서 설치 할 수 있을 경우에만 터렛을 생성
-	//		if (turretChoice->GetActive() && InputMgr::GetMouseButtonDown(sf::Mouse::Left))
-	//		{
-	//			if (turretChoice->GetActive() && InputMgr::GetMouseButtonDown(sf::Mouse::Left))
-	//			{
-	//				if (sceneGame->TurretPlaceCheck({ playerBuilding->GetPosition().x + 100.f, playerBuilding->GetPosition().y - 100.f }))
-	//				{
-	//					Turret* age1Turret3 = Turret::Create(Turret::Age1TurretTypes::PrimitiveCatapult);
-	//					if (age1Turret3 != nullptr)
-	//					{
-	//						age1Turret3->SetPosition({ playerBuilding->GetPosition().x + 100.f, playerBuilding->GetPosition().y - 100.f });
-	//						sceneGame->AddTurret(age1Turret3);
-	//						sceneGame->AddGo(age1Turret3);
-	//						turretChoice->SetActive(false);
-	//					}
-	//				}
-	//			}
-	//		}
-	//	}
-	//}
 
 	//터렛 추가 위치 버튼에 마우스 커서가 위치 할 경우
 	sf::FloatRect turretAddtBounds = turretAdd->GetGlobalBounds();
@@ -744,10 +548,6 @@ void UiHud::Update(float dt)
 		turretSellMsg->SetActive(true);
 
 		//터렛 되팔기 버튼을 클릭했을 경우
-		//마우스 커서를 터렛sell이미지로 바꾸고
-		//터렛이 설치 되어 있는 위치(플레이어 빌딩 위치 && 터렛 추가 발판
-		//추가 발판이없으면 제외한 위치)에 설치 되어 있지 않으면 수행 하지 않게
-		//터렛 클릭시 터렛을 active(false)하고 해당 터렛의 가격만큼 현재 돈 증가 되게
 		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left))
 		{
 			//turretCancelBtn->SetActive(true);
@@ -761,20 +561,6 @@ void UiHud::Update(float dt)
 			turretSell->SetActive(false);
 
 			backBtn->SetActive(true);
-			
-			//터렛3을 제거 후 그만큼 돈 증가 추가 코드 수정 필요
-			//if(터렛 타입이 a일경우)
-			//{
-			//	a의 가격만큼 돈을 돌려준다.
-			//}
-		//else if
-		//{
-
-		//}
-		//else
-		//{
-
-		//}
 			sceneGame->AddMoney(100);
 		}
 	}
@@ -897,21 +683,6 @@ void UiHud::TurretFalse()
 	age1UiTurret3->SetActive(false);
 }
 
-//void UiHud::ProcessTurretButton(SpriteGo* turretButton, const sf::Vector2f& mousePos, Turret::Age1TurretTypes turretType, const sf::Vector2f& placementPosition)
-//{
-//	sf::FloatRect buttonBounds = turretButton->GetGlobalBounds();
-//	if (buttonBounds.contains(mousePos))
-//	{
-//		AllMsgDelete();
-//
-//		if (InputMgr::GetMouseButtonDown(sf::Mouse::Left) && sceneGame->TurretPlaceCheck(placementPosition))
-//		{
-//			turretChoice->SetActive(true);
-//			turretSelectMode = turretType;
-//		}
-//	}
-//}
-
 void UiHud::Draw(sf::RenderWindow& window)
 {
 	SpriteGo::Draw(window);
@@ -944,11 +715,6 @@ void UiHud::Draw(sf::RenderWindow& window)
 		age1UiTurret2->Draw(window);
 		age1UiTurret3->Draw(window);
 	}
-
-	//if (turretCancelBtn->GetActive())
-	//{
-	//	turretCancelBtn->Draw(window);
-	//}
 
 	if (backBtn->GetActive())
 	{
